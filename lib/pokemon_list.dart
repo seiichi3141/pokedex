@@ -274,6 +274,19 @@ class Details extends ConsumerWidget {
                     Text(genus ?? ""),
                   ],
                 ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Subtitle('タイプ'),
+                    Wrap(
+                      spacing: 4,
+                      children: [
+                        ...data.types.map((type) => PokemonType(type.type)),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
@@ -295,5 +308,27 @@ class Subtitle extends StatelessWidget {
       width: 70,
       child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
     );
+  }
+}
+
+class PokemonType extends ConsumerWidget {
+  const PokemonType(this.type, {Key? key}) : super(key: key);
+
+  final Type type;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final name = ref.watch(pokemonTypeNameProvider(type));
+    return name != null
+        ? Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade100,
+              border: Border.all(color: Colors.grey.shade400),
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+            ),
+            child: Text(name, style: Theme.of(context).textTheme.caption),
+          )
+        : const SizedBox();
   }
 }

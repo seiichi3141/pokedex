@@ -21,3 +21,10 @@ final speciesDetailsProvider =
   final response = await Client.getDio().get("pokemon-species/${pokemon.name}");
   return SpeciesDetails.fromJson(response.data);
 });
+
+final pokemonTypeDetailsProvider =
+    FutureProvider.family<TypeDetails?, Type>((ref, type) async {
+  final response =
+      await Client.getDio().get("https://pokeapi.co/api/v2/type/${type.name}");
+  return TypeDetails.fromJson(response.data);
+});

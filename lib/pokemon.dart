@@ -22,6 +22,7 @@ class PokemonDetails with _$PokemonDetails {
     @JsonKey(name: 'species') required Species species,
     @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
     required Sprites sprites,
+    required List<TypeSlot> types,
   }) = PokemonDetailsData;
 
   factory PokemonDetails.fromJson(Map<String, dynamic> json) =>
@@ -127,4 +128,36 @@ class Language with _$Language {
 
   factory Language.fromJson(Map<String, dynamic> json) =>
       _$LanguageFromJson(json);
+}
+
+@freezed
+class TypeSlot with _$TypeSlot {
+  const factory TypeSlot({
+    required Type type,
+  }) = TypeSlotData;
+
+  factory TypeSlot.fromJson(Map<String, dynamic> json) =>
+      _$TypeSlotFromJson(json);
+}
+
+@freezed
+class Type with _$Type {
+  const factory Type({
+    required String name,
+    required String url,
+  }) = TypeData;
+
+  factory Type.fromJson(Map<String, dynamic> json) => _$TypeFromJson(json);
+}
+
+@freezed
+class TypeDetails with _$TypeDetails {
+  const factory TypeDetails({
+    required int id,
+    required String name,
+    required List<Name> names,
+  }) = TypeDetailsData;
+
+  factory TypeDetails.fromJson(Map<String, dynamic> json) =>
+      _$TypeDetailsFromJson(json);
 }

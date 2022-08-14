@@ -190,13 +190,15 @@ class _$PokemonDetailsTearOff {
       required String name,
       @JsonKey(name: 'species') required Species species,
       @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
-      required Sprites sprites}) {
+      required Sprites sprites,
+      required List<TypeSlot> types}) {
     return PokemonDetailsData(
       id: id,
       name: name,
       species: species,
       gameIndices: gameIndices,
       sprites: sprites,
+      types: types,
     );
   }
 
@@ -217,6 +219,7 @@ mixin _$PokemonDetails {
   @JsonKey(name: 'game_indices')
   List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
   Sprites get sprites => throw _privateConstructorUsedError;
+  List<TypeSlot> get types => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -234,7 +237,8 @@ abstract class $PokemonDetailsCopyWith<$Res> {
       String name,
       @JsonKey(name: 'species') Species species,
       @JsonKey(name: 'game_indices') List<GameIndex> gameIndices,
-      Sprites sprites});
+      Sprites sprites,
+      List<TypeSlot> types});
 
   $SpeciesCopyWith<$Res> get species;
   $SpritesCopyWith<$Res> get sprites;
@@ -256,6 +260,7 @@ class _$PokemonDetailsCopyWithImpl<$Res>
     Object? species = freezed,
     Object? gameIndices = freezed,
     Object? sprites = freezed,
+    Object? types = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -278,6 +283,10 @@ class _$PokemonDetailsCopyWithImpl<$Res>
           ? _value.sprites
           : sprites // ignore: cast_nullable_to_non_nullable
               as Sprites,
+      types: types == freezed
+          ? _value.types
+          : types // ignore: cast_nullable_to_non_nullable
+              as List<TypeSlot>,
     ));
   }
 
@@ -308,7 +317,8 @@ abstract class $PokemonDetailsDataCopyWith<$Res>
       String name,
       @JsonKey(name: 'species') Species species,
       @JsonKey(name: 'game_indices') List<GameIndex> gameIndices,
-      Sprites sprites});
+      Sprites sprites,
+      List<TypeSlot> types});
 
   @override
   $SpeciesCopyWith<$Res> get species;
@@ -334,6 +344,7 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
     Object? species = freezed,
     Object? gameIndices = freezed,
     Object? sprites = freezed,
+    Object? types = freezed,
   }) {
     return _then(PokemonDetailsData(
       id: id == freezed
@@ -356,6 +367,10 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
           ? _value.sprites
           : sprites // ignore: cast_nullable_to_non_nullable
               as Sprites,
+      types: types == freezed
+          ? _value.types
+          : types // ignore: cast_nullable_to_non_nullable
+              as List<TypeSlot>,
     ));
   }
 }
@@ -368,7 +383,8 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       required this.name,
       @JsonKey(name: 'species') required this.species,
       @JsonKey(name: 'game_indices') required this.gameIndices,
-      required this.sprites});
+      required this.sprites,
+      required this.types});
 
   factory _$PokemonDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$PokemonDetailsDataFromJson(json);
@@ -385,10 +401,12 @@ class _$PokemonDetailsData implements PokemonDetailsData {
   final List<GameIndex> gameIndices;
   @override
   final Sprites sprites;
+  @override
+  final List<TypeSlot> types;
 
   @override
   String toString() {
-    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices, sprites: $sprites)';
+    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices, sprites: $sprites, types: $types)';
   }
 
   @override
@@ -406,7 +424,10 @@ class _$PokemonDetailsData implements PokemonDetailsData {
                 const DeepCollectionEquality()
                     .equals(other.gameIndices, gameIndices)) &&
             (identical(other.sprites, sprites) ||
-                const DeepCollectionEquality().equals(other.sprites, sprites)));
+                const DeepCollectionEquality()
+                    .equals(other.sprites, sprites)) &&
+            (identical(other.types, types) ||
+                const DeepCollectionEquality().equals(other.types, types)));
   }
 
   @override
@@ -416,7 +437,8 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(species) ^
       const DeepCollectionEquality().hash(gameIndices) ^
-      const DeepCollectionEquality().hash(sprites);
+      const DeepCollectionEquality().hash(sprites) ^
+      const DeepCollectionEquality().hash(types);
 
   @JsonKey(ignore: true)
   @override
@@ -435,7 +457,8 @@ abstract class PokemonDetailsData implements PokemonDetails {
       required String name,
       @JsonKey(name: 'species') required Species species,
       @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
-      required Sprites sprites}) = _$PokemonDetailsData;
+      required Sprites sprites,
+      required List<TypeSlot> types}) = _$PokemonDetailsData;
 
   factory PokemonDetailsData.fromJson(Map<String, dynamic> json) =
       _$PokemonDetailsData.fromJson;
@@ -452,6 +475,8 @@ abstract class PokemonDetailsData implements PokemonDetails {
   List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
   @override
   Sprites get sprites => throw _privateConstructorUsedError;
+  @override
+  List<TypeSlot> get types => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $PokemonDetailsDataCopyWith<PokemonDetailsData> get copyWith =>
@@ -2164,5 +2189,516 @@ abstract class LanguageData implements Language {
   @override
   @JsonKey(ignore: true)
   $LanguageDataCopyWith<LanguageData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TypeSlot _$TypeSlotFromJson(Map<String, dynamic> json) {
+  return TypeSlotData.fromJson(json);
+}
+
+/// @nodoc
+class _$TypeSlotTearOff {
+  const _$TypeSlotTearOff();
+
+  TypeSlotData call({required Type type}) {
+    return TypeSlotData(
+      type: type,
+    );
+  }
+
+  TypeSlot fromJson(Map<String, Object> json) {
+    return TypeSlot.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $TypeSlot = _$TypeSlotTearOff();
+
+/// @nodoc
+mixin _$TypeSlot {
+  Type get type => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TypeSlotCopyWith<TypeSlot> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TypeSlotCopyWith<$Res> {
+  factory $TypeSlotCopyWith(TypeSlot value, $Res Function(TypeSlot) then) =
+      _$TypeSlotCopyWithImpl<$Res>;
+  $Res call({Type type});
+
+  $TypeCopyWith<$Res> get type;
+}
+
+/// @nodoc
+class _$TypeSlotCopyWithImpl<$Res> implements $TypeSlotCopyWith<$Res> {
+  _$TypeSlotCopyWithImpl(this._value, this._then);
+
+  final TypeSlot _value;
+  // ignore: unused_field
+  final $Res Function(TypeSlot) _then;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
+    ));
+  }
+
+  @override
+  $TypeCopyWith<$Res> get type {
+    return $TypeCopyWith<$Res>(_value.type, (value) {
+      return _then(_value.copyWith(type: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class $TypeSlotDataCopyWith<$Res> implements $TypeSlotCopyWith<$Res> {
+  factory $TypeSlotDataCopyWith(
+          TypeSlotData value, $Res Function(TypeSlotData) then) =
+      _$TypeSlotDataCopyWithImpl<$Res>;
+  @override
+  $Res call({Type type});
+
+  @override
+  $TypeCopyWith<$Res> get type;
+}
+
+/// @nodoc
+class _$TypeSlotDataCopyWithImpl<$Res> extends _$TypeSlotCopyWithImpl<$Res>
+    implements $TypeSlotDataCopyWith<$Res> {
+  _$TypeSlotDataCopyWithImpl(
+      TypeSlotData _value, $Res Function(TypeSlotData) _then)
+      : super(_value, (v) => _then(v as TypeSlotData));
+
+  @override
+  TypeSlotData get _value => super._value as TypeSlotData;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+  }) {
+    return _then(TypeSlotData(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TypeSlotData implements TypeSlotData {
+  const _$TypeSlotData({required this.type});
+
+  factory _$TypeSlotData.fromJson(Map<String, dynamic> json) =>
+      _$_$TypeSlotDataFromJson(json);
+
+  @override
+  final Type type;
+
+  @override
+  String toString() {
+    return 'TypeSlot(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TypeSlotData &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(type);
+
+  @JsonKey(ignore: true)
+  @override
+  $TypeSlotDataCopyWith<TypeSlotData> get copyWith =>
+      _$TypeSlotDataCopyWithImpl<TypeSlotData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$TypeSlotDataToJson(this);
+  }
+}
+
+abstract class TypeSlotData implements TypeSlot {
+  const factory TypeSlotData({required Type type}) = _$TypeSlotData;
+
+  factory TypeSlotData.fromJson(Map<String, dynamic> json) =
+      _$TypeSlotData.fromJson;
+
+  @override
+  Type get type => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $TypeSlotDataCopyWith<TypeSlotData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Type _$TypeFromJson(Map<String, dynamic> json) {
+  return TypeData.fromJson(json);
+}
+
+/// @nodoc
+class _$TypeTearOff {
+  const _$TypeTearOff();
+
+  TypeData call({required String name, required String url}) {
+    return TypeData(
+      name: name,
+      url: url,
+    );
+  }
+
+  Type fromJson(Map<String, Object> json) {
+    return Type.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Type = _$TypeTearOff();
+
+/// @nodoc
+mixin _$Type {
+  String get name => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TypeCopyWith<Type> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TypeCopyWith<$Res> {
+  factory $TypeCopyWith(Type value, $Res Function(Type) then) =
+      _$TypeCopyWithImpl<$Res>;
+  $Res call({String name, String url});
+}
+
+/// @nodoc
+class _$TypeCopyWithImpl<$Res> implements $TypeCopyWith<$Res> {
+  _$TypeCopyWithImpl(this._value, this._then);
+
+  final Type _value;
+  // ignore: unused_field
+  final $Res Function(Type) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $TypeDataCopyWith<$Res> implements $TypeCopyWith<$Res> {
+  factory $TypeDataCopyWith(TypeData value, $Res Function(TypeData) then) =
+      _$TypeDataCopyWithImpl<$Res>;
+  @override
+  $Res call({String name, String url});
+}
+
+/// @nodoc
+class _$TypeDataCopyWithImpl<$Res> extends _$TypeCopyWithImpl<$Res>
+    implements $TypeDataCopyWith<$Res> {
+  _$TypeDataCopyWithImpl(TypeData _value, $Res Function(TypeData) _then)
+      : super(_value, (v) => _then(v as TypeData));
+
+  @override
+  TypeData get _value => super._value as TypeData;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(TypeData(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TypeData implements TypeData {
+  const _$TypeData({required this.name, required this.url});
+
+  factory _$TypeData.fromJson(Map<String, dynamic> json) =>
+      _$_$TypeDataFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'Type(name: $name, url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TypeData &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(url);
+
+  @JsonKey(ignore: true)
+  @override
+  $TypeDataCopyWith<TypeData> get copyWith =>
+      _$TypeDataCopyWithImpl<TypeData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$TypeDataToJson(this);
+  }
+}
+
+abstract class TypeData implements Type {
+  const factory TypeData({required String name, required String url}) =
+      _$TypeData;
+
+  factory TypeData.fromJson(Map<String, dynamic> json) = _$TypeData.fromJson;
+
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  String get url => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $TypeDataCopyWith<TypeData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TypeDetails _$TypeDetailsFromJson(Map<String, dynamic> json) {
+  return TypeDetailsData.fromJson(json);
+}
+
+/// @nodoc
+class _$TypeDetailsTearOff {
+  const _$TypeDetailsTearOff();
+
+  TypeDetailsData call(
+      {required int id, required String name, required List<Name> names}) {
+    return TypeDetailsData(
+      id: id,
+      name: name,
+      names: names,
+    );
+  }
+
+  TypeDetails fromJson(Map<String, Object> json) {
+    return TypeDetails.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $TypeDetails = _$TypeDetailsTearOff();
+
+/// @nodoc
+mixin _$TypeDetails {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  List<Name> get names => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TypeDetailsCopyWith<TypeDetails> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TypeDetailsCopyWith<$Res> {
+  factory $TypeDetailsCopyWith(
+          TypeDetails value, $Res Function(TypeDetails) then) =
+      _$TypeDetailsCopyWithImpl<$Res>;
+  $Res call({int id, String name, List<Name> names});
+}
+
+/// @nodoc
+class _$TypeDetailsCopyWithImpl<$Res> implements $TypeDetailsCopyWith<$Res> {
+  _$TypeDetailsCopyWithImpl(this._value, this._then);
+
+  final TypeDetails _value;
+  // ignore: unused_field
+  final $Res Function(TypeDetails) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? names = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      names: names == freezed
+          ? _value.names
+          : names // ignore: cast_nullable_to_non_nullable
+              as List<Name>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $TypeDetailsDataCopyWith<$Res>
+    implements $TypeDetailsCopyWith<$Res> {
+  factory $TypeDetailsDataCopyWith(
+          TypeDetailsData value, $Res Function(TypeDetailsData) then) =
+      _$TypeDetailsDataCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, String name, List<Name> names});
+}
+
+/// @nodoc
+class _$TypeDetailsDataCopyWithImpl<$Res>
+    extends _$TypeDetailsCopyWithImpl<$Res>
+    implements $TypeDetailsDataCopyWith<$Res> {
+  _$TypeDetailsDataCopyWithImpl(
+      TypeDetailsData _value, $Res Function(TypeDetailsData) _then)
+      : super(_value, (v) => _then(v as TypeDetailsData));
+
+  @override
+  TypeDetailsData get _value => super._value as TypeDetailsData;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? names = freezed,
+  }) {
+    return _then(TypeDetailsData(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      names: names == freezed
+          ? _value.names
+          : names // ignore: cast_nullable_to_non_nullable
+              as List<Name>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TypeDetailsData implements TypeDetailsData {
+  const _$TypeDetailsData(
+      {required this.id, required this.name, required this.names});
+
+  factory _$TypeDetailsData.fromJson(Map<String, dynamic> json) =>
+      _$_$TypeDetailsDataFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final List<Name> names;
+
+  @override
+  String toString() {
+    return 'TypeDetails(id: $id, name: $name, names: $names)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TypeDetailsData &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.names, names) ||
+                const DeepCollectionEquality().equals(other.names, names)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(names);
+
+  @JsonKey(ignore: true)
+  @override
+  $TypeDetailsDataCopyWith<TypeDetailsData> get copyWith =>
+      _$TypeDetailsDataCopyWithImpl<TypeDetailsData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$TypeDetailsDataToJson(this);
+  }
+}
+
+abstract class TypeDetailsData implements TypeDetails {
+  const factory TypeDetailsData(
+      {required int id,
+      required String name,
+      required List<Name> names}) = _$TypeDetailsData;
+
+  factory TypeDetailsData.fromJson(Map<String, dynamic> json) =
+      _$TypeDetailsData.fromJson;
+
+  @override
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  List<Name> get names => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $TypeDetailsDataCopyWith<TypeDetailsData> get copyWith =>
       throw _privateConstructorUsedError;
 }

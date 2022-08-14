@@ -28,6 +28,9 @@ _$PokemonDetailsData _$_$PokemonDetailsDataFromJson(Map<String, dynamic> json) {
         .map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
         .toList(),
     sprites: Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
+    types: (json['types'] as List<dynamic>)
+        .map((e) => TypeSlot.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -39,6 +42,7 @@ Map<String, dynamic> _$_$PokemonDetailsDataToJson(
       'species': instance.species,
       'game_indices': instance.gameIndices,
       'sprites': instance.sprites,
+      'types': instance.types,
     };
 
 _$NameData _$_$NameDataFromJson(Map<String, dynamic> json) {
@@ -172,4 +176,45 @@ _$LanguageData _$_$LanguageDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$LanguageDataToJson(_$LanguageData instance) =>
     <String, dynamic>{
       'name': instance.name,
+    };
+
+_$TypeSlotData _$_$TypeSlotDataFromJson(Map<String, dynamic> json) {
+  return _$TypeSlotData(
+    type: Type.fromJson(json['type'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$TypeSlotDataToJson(_$TypeSlotData instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+    };
+
+_$TypeData _$_$TypeDataFromJson(Map<String, dynamic> json) {
+  return _$TypeData(
+    name: json['name'] as String,
+    url: json['url'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$TypeDataToJson(_$TypeData instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'url': instance.url,
+    };
+
+_$TypeDetailsData _$_$TypeDetailsDataFromJson(Map<String, dynamic> json) {
+  return _$TypeDetailsData(
+    id: json['id'] as int,
+    name: json['name'] as String,
+    names: (json['names'] as List<dynamic>)
+        .map((e) => Name.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$_$TypeDetailsDataToJson(_$TypeDetailsData instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'names': instance.names,
     };

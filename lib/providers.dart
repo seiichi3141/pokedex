@@ -108,3 +108,24 @@ final genusProvider = Provider.family<String?, Species>(
         orElse: () => null);
   },
 );
+
+final pokemonTypeNameProvider = Provider.family<String?, Type>(
+  (ref, type) {
+    final typeDetails = ref.watch(pokemonTypeDetailsProvider(type));
+
+    return typeDetails.maybeWhen(
+        data: (data) {
+          if (data == null) {
+            return type.name;
+          }
+          try {
+            return data.names.firstWhere((name) {
+              return name.language.name == "ja";
+            }).name;
+          } catch (_) {
+            return type.name;
+          }
+        },
+        orElse: () => null);
+  },
+);
