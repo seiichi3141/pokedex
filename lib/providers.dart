@@ -58,8 +58,8 @@ final pokemonColorProvider =
 
   return pokemonDetails.maybeWhen(
     data: (value) {
-      final speciesDetails =
-          ref.watch(speciesDetailsProvider(value.species));
+      final speciesDetails = ref.watch(speciesDetailsProvider(value.species));
+
       return speciesDetails.maybeWhen(
         data: (data) {
           switch (data.color.name) {
