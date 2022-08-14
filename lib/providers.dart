@@ -90,3 +90,21 @@ final pokemonColorProvider =
     orElse: () => Colors.grey,
   );
 });
+
+final genusProvider = Provider.family<String?, Species>(
+  (ref, pokemonSpecies) {
+    final speciesDetails = ref.watch(speciesDetailsProvider(pokemonSpecies));
+
+    return speciesDetails.maybeWhen(
+        data: (data) {
+          try {
+            return data.genera.firstWhere((genus) {
+              return genus.language.name == "ja-Hrkt";
+            }).genus;
+          } catch (_) {
+            return pokemonSpecies.name;
+          }
+        },
+        orElse: () => null);
+  },
+);

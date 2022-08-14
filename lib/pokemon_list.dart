@@ -183,6 +183,7 @@ class Details extends ConsumerWidget {
         final name = ref.watch(nameProvider(data.species));
         final imageUrls = ref.watch(pokemonImageUrlsProvider(pokemon));
         final selectedIndex = ref.watch(selectedIndexProvider);
+        final genus = ref.watch(genusProvider(data.species));
 
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -262,10 +263,37 @@ class Details extends ConsumerWidget {
                         )
                         .toList())
                 : const SizedBox(),
+            const SizedBox(height: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Subtitle('分類'),
+                    Text(genus ?? ""),
+                  ],
+                ),
+              ],
+            ),
           ],
         );
       },
       orElse: () => const SizedBox(),
+    );
+  }
+}
+
+class Subtitle extends StatelessWidget {
+  const Subtitle(this.label);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 70,
+      child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
     );
   }
 }

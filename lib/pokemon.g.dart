@@ -88,6 +88,9 @@ _$SpeciesDetailsData _$_$SpeciesDetailsDataFromJson(Map<String, dynamic> json) {
         .map((e) => Name.fromJson(e as Map<String, dynamic>))
         .toList(),
     color: PokemonColor.fromJson(json['color'] as Map<String, dynamic>),
+    genera: (json['genera'] as List<dynamic>)
+        .map((e) => Genus.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -97,6 +100,7 @@ Map<String, dynamic> _$_$SpeciesDetailsDataToJson(
       'name': instance.name,
       'names': instance.names,
       'color': instance.color,
+      'genera': instance.genera,
     };
 
 _$GameIndexData _$_$GameIndexDataFromJson(Map<String, dynamic> json) {
@@ -142,6 +146,30 @@ _$PokemonColorData _$_$PokemonColorDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$PokemonColorDataToJson(_$PokemonColorData instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+    };
+
+_$GenusData _$_$GenusDataFromJson(Map<String, dynamic> json) {
+  return _$GenusData(
+    genus: json['genus'] as String,
+    language: Language.fromJson(json['language'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$GenusDataToJson(_$GenusData instance) =>
+    <String, dynamic>{
+      'genus': instance.genus,
+      'language': instance.language,
+    };
+
+_$LanguageData _$_$LanguageDataFromJson(Map<String, dynamic> json) {
+  return _$LanguageData(
+    name: json['name'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$LanguageDataToJson(_$LanguageData instance) =>
     <String, dynamic>{
       'name': instance.name,
     };

@@ -958,11 +958,13 @@ class _$SpeciesDetailsTearOff {
   SpeciesDetailsData call(
       {required String name,
       required List<Name> names,
-      required PokemonColor color}) {
+      required PokemonColor color,
+      @JsonKey(name: "genera") required List<Genus> genera}) {
     return SpeciesDetailsData(
       name: name,
       names: names,
       color: color,
+      genera: genera,
     );
   }
 
@@ -979,6 +981,8 @@ mixin _$SpeciesDetails {
   String get name => throw _privateConstructorUsedError;
   List<Name> get names => throw _privateConstructorUsedError;
   PokemonColor get color => throw _privateConstructorUsedError;
+  @JsonKey(name: "genera")
+  List<Genus> get genera => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -991,7 +995,11 @@ abstract class $SpeciesDetailsCopyWith<$Res> {
   factory $SpeciesDetailsCopyWith(
           SpeciesDetails value, $Res Function(SpeciesDetails) then) =
       _$SpeciesDetailsCopyWithImpl<$Res>;
-  $Res call({String name, List<Name> names, PokemonColor color});
+  $Res call(
+      {String name,
+      List<Name> names,
+      PokemonColor color,
+      @JsonKey(name: "genera") List<Genus> genera});
 
   $PokemonColorCopyWith<$Res> get color;
 }
@@ -1010,6 +1018,7 @@ class _$SpeciesDetailsCopyWithImpl<$Res>
     Object? name = freezed,
     Object? names = freezed,
     Object? color = freezed,
+    Object? genera = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -1024,6 +1033,10 @@ class _$SpeciesDetailsCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as PokemonColor,
+      genera: genera == freezed
+          ? _value.genera
+          : genera // ignore: cast_nullable_to_non_nullable
+              as List<Genus>,
     ));
   }
 
@@ -1042,7 +1055,11 @@ abstract class $SpeciesDetailsDataCopyWith<$Res>
           SpeciesDetailsData value, $Res Function(SpeciesDetailsData) then) =
       _$SpeciesDetailsDataCopyWithImpl<$Res>;
   @override
-  $Res call({String name, List<Name> names, PokemonColor color});
+  $Res call(
+      {String name,
+      List<Name> names,
+      PokemonColor color,
+      @JsonKey(name: "genera") List<Genus> genera});
 
   @override
   $PokemonColorCopyWith<$Res> get color;
@@ -1064,6 +1081,7 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? names = freezed,
     Object? color = freezed,
+    Object? genera = freezed,
   }) {
     return _then(SpeciesDetailsData(
       name: name == freezed
@@ -1078,6 +1096,10 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as PokemonColor,
+      genera: genera == freezed
+          ? _value.genera
+          : genera // ignore: cast_nullable_to_non_nullable
+              as List<Genus>,
     ));
   }
 }
@@ -1086,7 +1108,10 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SpeciesDetailsData implements SpeciesDetailsData {
   _$SpeciesDetailsData(
-      {required this.name, required this.names, required this.color});
+      {required this.name,
+      required this.names,
+      required this.color,
+      @JsonKey(name: "genera") required this.genera});
 
   factory _$SpeciesDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$SpeciesDetailsDataFromJson(json);
@@ -1097,10 +1122,13 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
   final List<Name> names;
   @override
   final PokemonColor color;
+  @override
+  @JsonKey(name: "genera")
+  final List<Genus> genera;
 
   @override
   String toString() {
-    return 'SpeciesDetails(name: $name, names: $names, color: $color)';
+    return 'SpeciesDetails(name: $name, names: $names, color: $color, genera: $genera)';
   }
 
   @override
@@ -1112,7 +1140,9 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
             (identical(other.names, names) ||
                 const DeepCollectionEquality().equals(other.names, names)) &&
             (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)));
+                const DeepCollectionEquality().equals(other.color, color)) &&
+            (identical(other.genera, genera) ||
+                const DeepCollectionEquality().equals(other.genera, genera)));
   }
 
   @override
@@ -1120,7 +1150,8 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(names) ^
-      const DeepCollectionEquality().hash(color);
+      const DeepCollectionEquality().hash(color) ^
+      const DeepCollectionEquality().hash(genera);
 
   @JsonKey(ignore: true)
   @override
@@ -1135,9 +1166,11 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
 
 abstract class SpeciesDetailsData implements SpeciesDetails {
   factory SpeciesDetailsData(
-      {required String name,
-      required List<Name> names,
-      required PokemonColor color}) = _$SpeciesDetailsData;
+          {required String name,
+          required List<Name> names,
+          required PokemonColor color,
+          @JsonKey(name: "genera") required List<Genus> genera}) =
+      _$SpeciesDetailsData;
 
   factory SpeciesDetailsData.fromJson(Map<String, dynamic> json) =
       _$SpeciesDetailsData.fromJson;
@@ -1148,6 +1181,9 @@ abstract class SpeciesDetailsData implements SpeciesDetails {
   List<Name> get names => throw _privateConstructorUsedError;
   @override
   PokemonColor get color => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "genera")
+  List<Genus> get genera => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SpeciesDetailsDataCopyWith<SpeciesDetailsData> get copyWith =>
@@ -1801,5 +1837,332 @@ abstract class PokemonColorData implements PokemonColor {
   @override
   @JsonKey(ignore: true)
   $PokemonColorDataCopyWith<PokemonColorData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Genus _$GenusFromJson(Map<String, dynamic> json) {
+  return GenusData.fromJson(json);
+}
+
+/// @nodoc
+class _$GenusTearOff {
+  const _$GenusTearOff();
+
+  GenusData call(
+      {@JsonKey(name: "genus") required String genus,
+      required Language language}) {
+    return GenusData(
+      genus: genus,
+      language: language,
+    );
+  }
+
+  Genus fromJson(Map<String, Object> json) {
+    return Genus.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Genus = _$GenusTearOff();
+
+/// @nodoc
+mixin _$Genus {
+  @JsonKey(name: "genus")
+  String get genus => throw _privateConstructorUsedError;
+  Language get language => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GenusCopyWith<Genus> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GenusCopyWith<$Res> {
+  factory $GenusCopyWith(Genus value, $Res Function(Genus) then) =
+      _$GenusCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: "genus") String genus, Language language});
+
+  $LanguageCopyWith<$Res> get language;
+}
+
+/// @nodoc
+class _$GenusCopyWithImpl<$Res> implements $GenusCopyWith<$Res> {
+  _$GenusCopyWithImpl(this._value, this._then);
+
+  final Genus _value;
+  // ignore: unused_field
+  final $Res Function(Genus) _then;
+
+  @override
+  $Res call({
+    Object? genus = freezed,
+    Object? language = freezed,
+  }) {
+    return _then(_value.copyWith(
+      genus: genus == freezed
+          ? _value.genus
+          : genus // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as Language,
+    ));
+  }
+
+  @override
+  $LanguageCopyWith<$Res> get language {
+    return $LanguageCopyWith<$Res>(_value.language, (value) {
+      return _then(_value.copyWith(language: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class $GenusDataCopyWith<$Res> implements $GenusCopyWith<$Res> {
+  factory $GenusDataCopyWith(GenusData value, $Res Function(GenusData) then) =
+      _$GenusDataCopyWithImpl<$Res>;
+  @override
+  $Res call({@JsonKey(name: "genus") String genus, Language language});
+
+  @override
+  $LanguageCopyWith<$Res> get language;
+}
+
+/// @nodoc
+class _$GenusDataCopyWithImpl<$Res> extends _$GenusCopyWithImpl<$Res>
+    implements $GenusDataCopyWith<$Res> {
+  _$GenusDataCopyWithImpl(GenusData _value, $Res Function(GenusData) _then)
+      : super(_value, (v) => _then(v as GenusData));
+
+  @override
+  GenusData get _value => super._value as GenusData;
+
+  @override
+  $Res call({
+    Object? genus = freezed,
+    Object? language = freezed,
+  }) {
+    return _then(GenusData(
+      genus: genus == freezed
+          ? _value.genus
+          : genus // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as Language,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GenusData implements GenusData {
+  const _$GenusData(
+      {@JsonKey(name: "genus") required this.genus, required this.language});
+
+  factory _$GenusData.fromJson(Map<String, dynamic> json) =>
+      _$_$GenusDataFromJson(json);
+
+  @override
+  @JsonKey(name: "genus")
+  final String genus;
+  @override
+  final Language language;
+
+  @override
+  String toString() {
+    return 'Genus(genus: $genus, language: $language)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GenusData &&
+            (identical(other.genus, genus) ||
+                const DeepCollectionEquality().equals(other.genus, genus)) &&
+            (identical(other.language, language) ||
+                const DeepCollectionEquality()
+                    .equals(other.language, language)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(genus) ^
+      const DeepCollectionEquality().hash(language);
+
+  @JsonKey(ignore: true)
+  @override
+  $GenusDataCopyWith<GenusData> get copyWith =>
+      _$GenusDataCopyWithImpl<GenusData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$GenusDataToJson(this);
+  }
+}
+
+abstract class GenusData implements Genus {
+  const factory GenusData(
+      {@JsonKey(name: "genus") required String genus,
+      required Language language}) = _$GenusData;
+
+  factory GenusData.fromJson(Map<String, dynamic> json) = _$GenusData.fromJson;
+
+  @override
+  @JsonKey(name: "genus")
+  String get genus => throw _privateConstructorUsedError;
+  @override
+  Language get language => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $GenusDataCopyWith<GenusData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Language _$LanguageFromJson(Map<String, dynamic> json) {
+  return LanguageData.fromJson(json);
+}
+
+/// @nodoc
+class _$LanguageTearOff {
+  const _$LanguageTearOff();
+
+  LanguageData call({required String name}) {
+    return LanguageData(
+      name: name,
+    );
+  }
+
+  Language fromJson(Map<String, Object> json) {
+    return Language.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Language = _$LanguageTearOff();
+
+/// @nodoc
+mixin _$Language {
+  String get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LanguageCopyWith<Language> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LanguageCopyWith<$Res> {
+  factory $LanguageCopyWith(Language value, $Res Function(Language) then) =
+      _$LanguageCopyWithImpl<$Res>;
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$LanguageCopyWithImpl<$Res> implements $LanguageCopyWith<$Res> {
+  _$LanguageCopyWithImpl(this._value, this._then);
+
+  final Language _value;
+  // ignore: unused_field
+  final $Res Function(Language) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $LanguageDataCopyWith<$Res> implements $LanguageCopyWith<$Res> {
+  factory $LanguageDataCopyWith(
+          LanguageData value, $Res Function(LanguageData) then) =
+      _$LanguageDataCopyWithImpl<$Res>;
+  @override
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$LanguageDataCopyWithImpl<$Res> extends _$LanguageCopyWithImpl<$Res>
+    implements $LanguageDataCopyWith<$Res> {
+  _$LanguageDataCopyWithImpl(
+      LanguageData _value, $Res Function(LanguageData) _then)
+      : super(_value, (v) => _then(v as LanguageData));
+
+  @override
+  LanguageData get _value => super._value as LanguageData;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(LanguageData(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LanguageData implements LanguageData {
+  const _$LanguageData({required this.name});
+
+  factory _$LanguageData.fromJson(Map<String, dynamic> json) =>
+      _$_$LanguageDataFromJson(json);
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'Language(name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LanguageData &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+
+  @JsonKey(ignore: true)
+  @override
+  $LanguageDataCopyWith<LanguageData> get copyWith =>
+      _$LanguageDataCopyWithImpl<LanguageData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LanguageDataToJson(this);
+  }
+}
+
+abstract class LanguageData implements Language {
+  const factory LanguageData({required String name}) = _$LanguageData;
+
+  factory LanguageData.fromJson(Map<String, dynamic> json) =
+      _$LanguageData.fromJson;
+
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $LanguageDataCopyWith<LanguageData> get copyWith =>
       throw _privateConstructorUsedError;
 }

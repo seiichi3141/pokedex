@@ -65,6 +65,7 @@ class SpeciesDetails with _$SpeciesDetails {
     required String name,
     required List<Name> names,
     required PokemonColor color,
+    @JsonKey(name: "genera") required List<Genus> genera,
   }) = SpeciesDetailsData;
 
   factory SpeciesDetails.fromJson(Map<String, dynamic> json) =>
@@ -106,4 +107,24 @@ class PokemonColor with _$PokemonColor {
 
   factory PokemonColor.fromJson(Map<String, dynamic> json) =>
       _$PokemonColorFromJson(json);
+}
+
+@freezed
+class Genus with _$Genus {
+  const factory Genus({
+    @JsonKey(name: "genus") required String genus,
+    required Language language,
+  }) = GenusData;
+
+  factory Genus.fromJson(Map<String, dynamic> json) => _$GenusFromJson(json);
+}
+
+@freezed
+class Language with _$Language {
+  const factory Language({
+    required String name,
+  }) = LanguageData;
+
+  factory Language.fromJson(Map<String, dynamic> json) =>
+      _$LanguageFromJson(json);
 }
