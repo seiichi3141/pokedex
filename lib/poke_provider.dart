@@ -9,3 +9,15 @@ final pokemonsProvider = FutureProvider((_) async {
       .map((item) => Pokemon.fromJson(item))
       .toList();
 });
+
+final pokemonDetailsProvider =
+    FutureProvider.family<PokemonDetails, Pokemon>((_, pokemon) async {
+  final response = await Client.getDio().get("pokemon/${pokemon.name}");
+  return PokemonDetails.fromJson(response.data);
+});
+
+final speciesDetailsProvider =
+    FutureProvider.family<SpeciesDetails, Species>((_, pokemon) async {
+  final response = await Client.getDio().get("pokemon-species/${pokemon.name}");
+  return SpeciesDetails.fromJson(response.data);
+});

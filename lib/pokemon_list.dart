@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/poke_provider.dart';
 import 'package:pokedex/pokemon.dart';
+import 'package:pokedex/providers.dart';
 
 class PokemonList extends ConsumerWidget {
   @override
@@ -50,9 +51,14 @@ class PokemonListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final pokemonDetails = ref.watch(pokemonDetailsProvider(pokemon));
+
     return Card(
       margin: const EdgeInsets.all(8),
-      child:  InkWell(
+      child: pokemonDetails.maybeWhen(
+        data: (data) {
+          final name = ref.watch(nameProvider(data.species));
+          return  InkWell(
             child: LayoutBuilder(
               builder: ((context, constraints) {
                 return Stack(children: [
@@ -63,7 +69,7 @@ class PokemonListTile extends ConsumerWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            pokemon.name,
+                            name,
                             style: GoogleFonts.delaGothicOne(
                               fontSize: 28,
                               height: 1,
@@ -76,7 +82,10 @@ class PokemonListTile extends ConsumerWidget {
                 ]);
               }),
             ),
-          ),
+          );
+        },
+        orElse: () => const SizedBox(height: 64),
+      ),
     );
   }
 }
