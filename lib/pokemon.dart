@@ -21,6 +21,7 @@ class PokemonDetails with _$PokemonDetails {
     required String name,
     @JsonKey(name: 'species') required Species species,
     @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
+    required Sprites sprites,
   }) = PokemonDetailsData;
 
   factory PokemonDetails.fromJson(Map<String, dynamic> json) =>
@@ -77,4 +78,21 @@ class GameIndex with _$GameIndex {
 
   factory GameIndex.fromJson(Map<String, dynamic> json) =>
       _$GameIndexFromJson(json);
+}
+
+@freezed
+class Sprites with _$Sprites {
+  const factory Sprites({
+    @JsonKey(name: "back_default") String? backDefault,
+    @JsonKey(name: "back_female") String? backFemale,
+    @JsonKey(name: "back_shiny") String? backShiny,
+    @JsonKey(name: "back_shiny_female") String? backShinyFemale,
+    @JsonKey(name: "front_default") String? frontDefault,
+    @JsonKey(name: "front_female") String? frontFemale,
+    @JsonKey(name: "front_shiny") String? frontShiny,
+    @JsonKey(name: "front_shiny_female") String? frontShinyFemale,
+  }) = SpritesData;
+
+  factory Sprites.fromJson(Map<String, dynamic> json) =>
+      _$SpritesFromJson(json);
 }

@@ -32,3 +32,21 @@ final gameIndexProvider = Provider.family<String, Pokemon>((ref, pokemon) {
     orElse: () => "---",
   );
 });
+
+final pokemonImageUrlsProvider =
+    Provider.family<List<String>?, Pokemon>((ref, pokemon) {
+  final pokemonDetails = ref.watch(pokemonDetailsProvider(pokemon));
+  return pokemonDetails.maybeWhen(
+    data: (value) => [
+      value.sprites.frontDefault,
+      value.sprites.frontFemale,
+      value.sprites.frontShiny,
+      value.sprites.frontShinyFemale,
+      value.sprites.backDefault,
+      value.sprites.backFemale,
+      value.sprites.backShiny,
+      value.sprites.backShinyFemale,
+    ].whereType<String>().toList(),
+    orElse: () => null,
+  );
+});

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,10 +60,15 @@ class PokemonListTile extends ConsumerWidget {
         data: (data) {
           final gameIndex = ref.watch(gameIndexProvider(pokemon));
           final name = ref.watch(nameProvider(data.species));
-          return  InkWell(
+          return InkWell(
             child: LayoutBuilder(
               builder: ((context, constraints) {
                 return Stack(children: [
+                  Positioned(
+                    top: -32,
+                    right: constraints.maxWidth / 2 - 10,
+                    child: Thumbnail(pokemon, width: 128, height: 128),
+                  ),
                   Container(
                     height: 64,
                     padding: const EdgeInsets.all(8),
@@ -97,6 +103,33 @@ class PokemonListTile extends ConsumerWidget {
         },
         orElse: () => const SizedBox(height: 64),
       ),
+    );
+  }
+}
+
+class Thumbnail extends ConsumerWidget {
+  const Thumbnail(this.pokemon, {Key? key, this.width, this.height})
+      : super(key: key);
+
+  final Pokemon pokemon;
+  final double? width;
+  final double? height;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imageUrls = ref.watch(pokemonImageUrlsProvider(pokemon));
+
+    return Container(
+      width: width ?? 64,
+      height: height ?? 64,
+      child: imageUrls != null && imageUrls.isNotEmpty
+          ? CachedNetworkImage(
+              width: width ?? 64,
+              height: height ?? 64,
+              imageUrl: imageUrls[0],
+              fit: BoxFit.cover,
+            )
+          : const SizedBox(),
     );
   }
 }

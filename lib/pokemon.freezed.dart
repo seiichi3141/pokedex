@@ -189,12 +189,14 @@ class _$PokemonDetailsTearOff {
       {required int id,
       required String name,
       @JsonKey(name: 'species') required Species species,
-      @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices}) {
+      @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
+      required Sprites sprites}) {
     return PokemonDetailsData(
       id: id,
       name: name,
       species: species,
       gameIndices: gameIndices,
+      sprites: sprites,
     );
   }
 
@@ -214,6 +216,7 @@ mixin _$PokemonDetails {
   Species get species => throw _privateConstructorUsedError;
   @JsonKey(name: 'game_indices')
   List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
+  Sprites get sprites => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -230,9 +233,11 @@ abstract class $PokemonDetailsCopyWith<$Res> {
       {int id,
       String name,
       @JsonKey(name: 'species') Species species,
-      @JsonKey(name: 'game_indices') List<GameIndex> gameIndices});
+      @JsonKey(name: 'game_indices') List<GameIndex> gameIndices,
+      Sprites sprites});
 
   $SpeciesCopyWith<$Res> get species;
+  $SpritesCopyWith<$Res> get sprites;
 }
 
 /// @nodoc
@@ -250,6 +255,7 @@ class _$PokemonDetailsCopyWithImpl<$Res>
     Object? name = freezed,
     Object? species = freezed,
     Object? gameIndices = freezed,
+    Object? sprites = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -268,6 +274,10 @@ class _$PokemonDetailsCopyWithImpl<$Res>
           ? _value.gameIndices
           : gameIndices // ignore: cast_nullable_to_non_nullable
               as List<GameIndex>,
+      sprites: sprites == freezed
+          ? _value.sprites
+          : sprites // ignore: cast_nullable_to_non_nullable
+              as Sprites,
     ));
   }
 
@@ -275,6 +285,13 @@ class _$PokemonDetailsCopyWithImpl<$Res>
   $SpeciesCopyWith<$Res> get species {
     return $SpeciesCopyWith<$Res>(_value.species, (value) {
       return _then(_value.copyWith(species: value));
+    });
+  }
+
+  @override
+  $SpritesCopyWith<$Res> get sprites {
+    return $SpritesCopyWith<$Res>(_value.sprites, (value) {
+      return _then(_value.copyWith(sprites: value));
     });
   }
 }
@@ -290,10 +307,13 @@ abstract class $PokemonDetailsDataCopyWith<$Res>
       {int id,
       String name,
       @JsonKey(name: 'species') Species species,
-      @JsonKey(name: 'game_indices') List<GameIndex> gameIndices});
+      @JsonKey(name: 'game_indices') List<GameIndex> gameIndices,
+      Sprites sprites});
 
   @override
   $SpeciesCopyWith<$Res> get species;
+  @override
+  $SpritesCopyWith<$Res> get sprites;
 }
 
 /// @nodoc
@@ -313,6 +333,7 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
     Object? name = freezed,
     Object? species = freezed,
     Object? gameIndices = freezed,
+    Object? sprites = freezed,
   }) {
     return _then(PokemonDetailsData(
       id: id == freezed
@@ -331,6 +352,10 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
           ? _value.gameIndices
           : gameIndices // ignore: cast_nullable_to_non_nullable
               as List<GameIndex>,
+      sprites: sprites == freezed
+          ? _value.sprites
+          : sprites // ignore: cast_nullable_to_non_nullable
+              as Sprites,
     ));
   }
 }
@@ -342,7 +367,8 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       {required this.id,
       required this.name,
       @JsonKey(name: 'species') required this.species,
-      @JsonKey(name: 'game_indices') required this.gameIndices});
+      @JsonKey(name: 'game_indices') required this.gameIndices,
+      required this.sprites});
 
   factory _$PokemonDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$PokemonDetailsDataFromJson(json);
@@ -357,10 +383,12 @@ class _$PokemonDetailsData implements PokemonDetailsData {
   @override
   @JsonKey(name: 'game_indices')
   final List<GameIndex> gameIndices;
+  @override
+  final Sprites sprites;
 
   @override
   String toString() {
-    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices)';
+    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices, sprites: $sprites)';
   }
 
   @override
@@ -376,7 +404,9 @@ class _$PokemonDetailsData implements PokemonDetailsData {
                     .equals(other.species, species)) &&
             (identical(other.gameIndices, gameIndices) ||
                 const DeepCollectionEquality()
-                    .equals(other.gameIndices, gameIndices)));
+                    .equals(other.gameIndices, gameIndices)) &&
+            (identical(other.sprites, sprites) ||
+                const DeepCollectionEquality().equals(other.sprites, sprites)));
   }
 
   @override
@@ -385,7 +415,8 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(species) ^
-      const DeepCollectionEquality().hash(gameIndices);
+      const DeepCollectionEquality().hash(gameIndices) ^
+      const DeepCollectionEquality().hash(sprites);
 
   @JsonKey(ignore: true)
   @override
@@ -402,10 +433,9 @@ abstract class PokemonDetailsData implements PokemonDetails {
   factory PokemonDetailsData(
       {required int id,
       required String name,
-      @JsonKey(name: 'species')
-          required Species species,
-      @JsonKey(name: 'game_indices')
-          required List<GameIndex> gameIndices}) = _$PokemonDetailsData;
+      @JsonKey(name: 'species') required Species species,
+      @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
+      required Sprites sprites}) = _$PokemonDetailsData;
 
   factory PokemonDetailsData.fromJson(Map<String, dynamic> json) =
       _$PokemonDetailsData.fromJson;
@@ -420,6 +450,8 @@ abstract class PokemonDetailsData implements PokemonDetails {
   @override
   @JsonKey(name: 'game_indices')
   List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
+  @override
+  Sprites get sprites => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $PokemonDetailsDataCopyWith<PokemonDetailsData> get copyWith =>
@@ -1233,5 +1265,356 @@ abstract class GameIndexData implements GameIndex {
   @override
   @JsonKey(ignore: true)
   $GameIndexDataCopyWith<GameIndexData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Sprites _$SpritesFromJson(Map<String, dynamic> json) {
+  return SpritesData.fromJson(json);
+}
+
+/// @nodoc
+class _$SpritesTearOff {
+  const _$SpritesTearOff();
+
+  SpritesData call(
+      {@JsonKey(name: "back_default") String? backDefault,
+      @JsonKey(name: "back_female") String? backFemale,
+      @JsonKey(name: "back_shiny") String? backShiny,
+      @JsonKey(name: "back_shiny_female") String? backShinyFemale,
+      @JsonKey(name: "front_default") String? frontDefault,
+      @JsonKey(name: "front_female") String? frontFemale,
+      @JsonKey(name: "front_shiny") String? frontShiny,
+      @JsonKey(name: "front_shiny_female") String? frontShinyFemale}) {
+    return SpritesData(
+      backDefault: backDefault,
+      backFemale: backFemale,
+      backShiny: backShiny,
+      backShinyFemale: backShinyFemale,
+      frontDefault: frontDefault,
+      frontFemale: frontFemale,
+      frontShiny: frontShiny,
+      frontShinyFemale: frontShinyFemale,
+    );
+  }
+
+  Sprites fromJson(Map<String, Object> json) {
+    return Sprites.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Sprites = _$SpritesTearOff();
+
+/// @nodoc
+mixin _$Sprites {
+  @JsonKey(name: "back_default")
+  String? get backDefault => throw _privateConstructorUsedError;
+  @JsonKey(name: "back_female")
+  String? get backFemale => throw _privateConstructorUsedError;
+  @JsonKey(name: "back_shiny")
+  String? get backShiny => throw _privateConstructorUsedError;
+  @JsonKey(name: "back_shiny_female")
+  String? get backShinyFemale => throw _privateConstructorUsedError;
+  @JsonKey(name: "front_default")
+  String? get frontDefault => throw _privateConstructorUsedError;
+  @JsonKey(name: "front_female")
+  String? get frontFemale => throw _privateConstructorUsedError;
+  @JsonKey(name: "front_shiny")
+  String? get frontShiny => throw _privateConstructorUsedError;
+  @JsonKey(name: "front_shiny_female")
+  String? get frontShinyFemale => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SpritesCopyWith<Sprites> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SpritesCopyWith<$Res> {
+  factory $SpritesCopyWith(Sprites value, $Res Function(Sprites) then) =
+      _$SpritesCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: "back_default") String? backDefault,
+      @JsonKey(name: "back_female") String? backFemale,
+      @JsonKey(name: "back_shiny") String? backShiny,
+      @JsonKey(name: "back_shiny_female") String? backShinyFemale,
+      @JsonKey(name: "front_default") String? frontDefault,
+      @JsonKey(name: "front_female") String? frontFemale,
+      @JsonKey(name: "front_shiny") String? frontShiny,
+      @JsonKey(name: "front_shiny_female") String? frontShinyFemale});
+}
+
+/// @nodoc
+class _$SpritesCopyWithImpl<$Res> implements $SpritesCopyWith<$Res> {
+  _$SpritesCopyWithImpl(this._value, this._then);
+
+  final Sprites _value;
+  // ignore: unused_field
+  final $Res Function(Sprites) _then;
+
+  @override
+  $Res call({
+    Object? backDefault = freezed,
+    Object? backFemale = freezed,
+    Object? backShiny = freezed,
+    Object? backShinyFemale = freezed,
+    Object? frontDefault = freezed,
+    Object? frontFemale = freezed,
+    Object? frontShiny = freezed,
+    Object? frontShinyFemale = freezed,
+  }) {
+    return _then(_value.copyWith(
+      backDefault: backDefault == freezed
+          ? _value.backDefault
+          : backDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backFemale: backFemale == freezed
+          ? _value.backFemale
+          : backFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backShiny: backShiny == freezed
+          ? _value.backShiny
+          : backShiny // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backShinyFemale: backShinyFemale == freezed
+          ? _value.backShinyFemale
+          : backShinyFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontDefault: frontDefault == freezed
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontFemale: frontFemale == freezed
+          ? _value.frontFemale
+          : frontFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontShiny: frontShiny == freezed
+          ? _value.frontShiny
+          : frontShiny // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontShinyFemale: frontShinyFemale == freezed
+          ? _value.frontShinyFemale
+          : frontShinyFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $SpritesDataCopyWith<$Res> implements $SpritesCopyWith<$Res> {
+  factory $SpritesDataCopyWith(
+          SpritesData value, $Res Function(SpritesData) then) =
+      _$SpritesDataCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: "back_default") String? backDefault,
+      @JsonKey(name: "back_female") String? backFemale,
+      @JsonKey(name: "back_shiny") String? backShiny,
+      @JsonKey(name: "back_shiny_female") String? backShinyFemale,
+      @JsonKey(name: "front_default") String? frontDefault,
+      @JsonKey(name: "front_female") String? frontFemale,
+      @JsonKey(name: "front_shiny") String? frontShiny,
+      @JsonKey(name: "front_shiny_female") String? frontShinyFemale});
+}
+
+/// @nodoc
+class _$SpritesDataCopyWithImpl<$Res> extends _$SpritesCopyWithImpl<$Res>
+    implements $SpritesDataCopyWith<$Res> {
+  _$SpritesDataCopyWithImpl(
+      SpritesData _value, $Res Function(SpritesData) _then)
+      : super(_value, (v) => _then(v as SpritesData));
+
+  @override
+  SpritesData get _value => super._value as SpritesData;
+
+  @override
+  $Res call({
+    Object? backDefault = freezed,
+    Object? backFemale = freezed,
+    Object? backShiny = freezed,
+    Object? backShinyFemale = freezed,
+    Object? frontDefault = freezed,
+    Object? frontFemale = freezed,
+    Object? frontShiny = freezed,
+    Object? frontShinyFemale = freezed,
+  }) {
+    return _then(SpritesData(
+      backDefault: backDefault == freezed
+          ? _value.backDefault
+          : backDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backFemale: backFemale == freezed
+          ? _value.backFemale
+          : backFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backShiny: backShiny == freezed
+          ? _value.backShiny
+          : backShiny // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backShinyFemale: backShinyFemale == freezed
+          ? _value.backShinyFemale
+          : backShinyFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontDefault: frontDefault == freezed
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontFemale: frontFemale == freezed
+          ? _value.frontFemale
+          : frontFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontShiny: frontShiny == freezed
+          ? _value.frontShiny
+          : frontShiny // ignore: cast_nullable_to_non_nullable
+              as String?,
+      frontShinyFemale: frontShinyFemale == freezed
+          ? _value.frontShinyFemale
+          : frontShinyFemale // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SpritesData implements SpritesData {
+  const _$SpritesData(
+      {@JsonKey(name: "back_default") this.backDefault,
+      @JsonKey(name: "back_female") this.backFemale,
+      @JsonKey(name: "back_shiny") this.backShiny,
+      @JsonKey(name: "back_shiny_female") this.backShinyFemale,
+      @JsonKey(name: "front_default") this.frontDefault,
+      @JsonKey(name: "front_female") this.frontFemale,
+      @JsonKey(name: "front_shiny") this.frontShiny,
+      @JsonKey(name: "front_shiny_female") this.frontShinyFemale});
+
+  factory _$SpritesData.fromJson(Map<String, dynamic> json) =>
+      _$_$SpritesDataFromJson(json);
+
+  @override
+  @JsonKey(name: "back_default")
+  final String? backDefault;
+  @override
+  @JsonKey(name: "back_female")
+  final String? backFemale;
+  @override
+  @JsonKey(name: "back_shiny")
+  final String? backShiny;
+  @override
+  @JsonKey(name: "back_shiny_female")
+  final String? backShinyFemale;
+  @override
+  @JsonKey(name: "front_default")
+  final String? frontDefault;
+  @override
+  @JsonKey(name: "front_female")
+  final String? frontFemale;
+  @override
+  @JsonKey(name: "front_shiny")
+  final String? frontShiny;
+  @override
+  @JsonKey(name: "front_shiny_female")
+  final String? frontShinyFemale;
+
+  @override
+  String toString() {
+    return 'Sprites(backDefault: $backDefault, backFemale: $backFemale, backShiny: $backShiny, backShinyFemale: $backShinyFemale, frontDefault: $frontDefault, frontFemale: $frontFemale, frontShiny: $frontShiny, frontShinyFemale: $frontShinyFemale)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SpritesData &&
+            (identical(other.backDefault, backDefault) ||
+                const DeepCollectionEquality()
+                    .equals(other.backDefault, backDefault)) &&
+            (identical(other.backFemale, backFemale) ||
+                const DeepCollectionEquality()
+                    .equals(other.backFemale, backFemale)) &&
+            (identical(other.backShiny, backShiny) ||
+                const DeepCollectionEquality()
+                    .equals(other.backShiny, backShiny)) &&
+            (identical(other.backShinyFemale, backShinyFemale) ||
+                const DeepCollectionEquality()
+                    .equals(other.backShinyFemale, backShinyFemale)) &&
+            (identical(other.frontDefault, frontDefault) ||
+                const DeepCollectionEquality()
+                    .equals(other.frontDefault, frontDefault)) &&
+            (identical(other.frontFemale, frontFemale) ||
+                const DeepCollectionEquality()
+                    .equals(other.frontFemale, frontFemale)) &&
+            (identical(other.frontShiny, frontShiny) ||
+                const DeepCollectionEquality()
+                    .equals(other.frontShiny, frontShiny)) &&
+            (identical(other.frontShinyFemale, frontShinyFemale) ||
+                const DeepCollectionEquality()
+                    .equals(other.frontShinyFemale, frontShinyFemale)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(backDefault) ^
+      const DeepCollectionEquality().hash(backFemale) ^
+      const DeepCollectionEquality().hash(backShiny) ^
+      const DeepCollectionEquality().hash(backShinyFemale) ^
+      const DeepCollectionEquality().hash(frontDefault) ^
+      const DeepCollectionEquality().hash(frontFemale) ^
+      const DeepCollectionEquality().hash(frontShiny) ^
+      const DeepCollectionEquality().hash(frontShinyFemale);
+
+  @JsonKey(ignore: true)
+  @override
+  $SpritesDataCopyWith<SpritesData> get copyWith =>
+      _$SpritesDataCopyWithImpl<SpritesData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$SpritesDataToJson(this);
+  }
+}
+
+abstract class SpritesData implements Sprites {
+  const factory SpritesData(
+          {@JsonKey(name: "back_default") String? backDefault,
+          @JsonKey(name: "back_female") String? backFemale,
+          @JsonKey(name: "back_shiny") String? backShiny,
+          @JsonKey(name: "back_shiny_female") String? backShinyFemale,
+          @JsonKey(name: "front_default") String? frontDefault,
+          @JsonKey(name: "front_female") String? frontFemale,
+          @JsonKey(name: "front_shiny") String? frontShiny,
+          @JsonKey(name: "front_shiny_female") String? frontShinyFemale}) =
+      _$SpritesData;
+
+  factory SpritesData.fromJson(Map<String, dynamic> json) =
+      _$SpritesData.fromJson;
+
+  @override
+  @JsonKey(name: "back_default")
+  String? get backDefault => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "back_female")
+  String? get backFemale => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "back_shiny")
+  String? get backShiny => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "back_shiny_female")
+  String? get backShinyFemale => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "front_default")
+  String? get frontDefault => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "front_female")
+  String? get frontFemale => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "front_shiny")
+  String? get frontShiny => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "front_shiny_female")
+  String? get frontShinyFemale => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $SpritesDataCopyWith<SpritesData> get copyWith =>
       throw _privateConstructorUsedError;
 }

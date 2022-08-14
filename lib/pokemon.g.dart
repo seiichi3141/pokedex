@@ -27,6 +27,7 @@ _$PokemonDetailsData _$_$PokemonDetailsDataFromJson(Map<String, dynamic> json) {
     gameIndices: (json['game_indices'] as List<dynamic>)
         .map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
         .toList(),
+    sprites: Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
   );
 }
 
@@ -37,6 +38,7 @@ Map<String, dynamic> _$_$PokemonDetailsDataToJson(
       'name': instance.name,
       'species': instance.species,
       'game_indices': instance.gameIndices,
+      'sprites': instance.sprites,
     };
 
 _$NameData _$_$NameDataFromJson(Map<String, dynamic> json) {
@@ -104,4 +106,29 @@ _$GameIndexData _$_$GameIndexDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$GameIndexDataToJson(_$GameIndexData instance) =>
     <String, dynamic>{
       'game_index': instance.gameIndex,
+    };
+
+_$SpritesData _$_$SpritesDataFromJson(Map<String, dynamic> json) {
+  return _$SpritesData(
+    backDefault: json['back_default'] as String?,
+    backFemale: json['back_female'] as String?,
+    backShiny: json['back_shiny'] as String?,
+    backShinyFemale: json['back_shiny_female'] as String?,
+    frontDefault: json['front_default'] as String?,
+    frontFemale: json['front_female'] as String?,
+    frontShiny: json['front_shiny'] as String?,
+    frontShinyFemale: json['front_shiny_female'] as String?,
+  );
+}
+
+Map<String, dynamic> _$_$SpritesDataToJson(_$SpritesData instance) =>
+    <String, dynamic>{
+      'back_default': instance.backDefault,
+      'back_female': instance.backFemale,
+      'back_shiny': instance.backShiny,
+      'back_shiny_female': instance.backShinyFemale,
+      'front_default': instance.frontDefault,
+      'front_female': instance.frontFemale,
+      'front_shiny': instance.frontShiny,
+      'front_shiny_female': instance.frontShinyFemale,
     };
