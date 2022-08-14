@@ -191,7 +191,9 @@ class _$PokemonDetailsTearOff {
       @JsonKey(name: 'species') required Species species,
       @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
       required Sprites sprites,
-      required List<TypeSlot> types}) {
+      required List<TypeSlot> types,
+      required int height,
+      required int weight}) {
     return PokemonDetailsData(
       id: id,
       name: name,
@@ -199,6 +201,8 @@ class _$PokemonDetailsTearOff {
       gameIndices: gameIndices,
       sprites: sprites,
       types: types,
+      height: height,
+      weight: weight,
     );
   }
 
@@ -220,6 +224,8 @@ mixin _$PokemonDetails {
   List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
   Sprites get sprites => throw _privateConstructorUsedError;
   List<TypeSlot> get types => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
+  int get weight => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -238,7 +244,9 @@ abstract class $PokemonDetailsCopyWith<$Res> {
       @JsonKey(name: 'species') Species species,
       @JsonKey(name: 'game_indices') List<GameIndex> gameIndices,
       Sprites sprites,
-      List<TypeSlot> types});
+      List<TypeSlot> types,
+      int height,
+      int weight});
 
   $SpeciesCopyWith<$Res> get species;
   $SpritesCopyWith<$Res> get sprites;
@@ -261,6 +269,8 @@ class _$PokemonDetailsCopyWithImpl<$Res>
     Object? gameIndices = freezed,
     Object? sprites = freezed,
     Object? types = freezed,
+    Object? height = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -287,6 +297,14 @@ class _$PokemonDetailsCopyWithImpl<$Res>
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
               as List<TypeSlot>,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
@@ -318,7 +336,9 @@ abstract class $PokemonDetailsDataCopyWith<$Res>
       @JsonKey(name: 'species') Species species,
       @JsonKey(name: 'game_indices') List<GameIndex> gameIndices,
       Sprites sprites,
-      List<TypeSlot> types});
+      List<TypeSlot> types,
+      int height,
+      int weight});
 
   @override
   $SpeciesCopyWith<$Res> get species;
@@ -345,6 +365,8 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
     Object? gameIndices = freezed,
     Object? sprites = freezed,
     Object? types = freezed,
+    Object? height = freezed,
+    Object? weight = freezed,
   }) {
     return _then(PokemonDetailsData(
       id: id == freezed
@@ -371,6 +393,14 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
               as List<TypeSlot>,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -384,7 +414,9 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       @JsonKey(name: 'species') required this.species,
       @JsonKey(name: 'game_indices') required this.gameIndices,
       required this.sprites,
-      required this.types});
+      required this.types,
+      required this.height,
+      required this.weight});
 
   factory _$PokemonDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$PokemonDetailsDataFromJson(json);
@@ -403,10 +435,14 @@ class _$PokemonDetailsData implements PokemonDetailsData {
   final Sprites sprites;
   @override
   final List<TypeSlot> types;
+  @override
+  final int height;
+  @override
+  final int weight;
 
   @override
   String toString() {
-    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices, sprites: $sprites, types: $types)';
+    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices, sprites: $sprites, types: $types, height: $height, weight: $weight)';
   }
 
   @override
@@ -427,7 +463,11 @@ class _$PokemonDetailsData implements PokemonDetailsData {
                 const DeepCollectionEquality()
                     .equals(other.sprites, sprites)) &&
             (identical(other.types, types) ||
-                const DeepCollectionEquality().equals(other.types, types)));
+                const DeepCollectionEquality().equals(other.types, types)) &&
+            (identical(other.height, height) ||
+                const DeepCollectionEquality().equals(other.height, height)) &&
+            (identical(other.weight, weight) ||
+                const DeepCollectionEquality().equals(other.weight, weight)));
   }
 
   @override
@@ -438,7 +478,9 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       const DeepCollectionEquality().hash(species) ^
       const DeepCollectionEquality().hash(gameIndices) ^
       const DeepCollectionEquality().hash(sprites) ^
-      const DeepCollectionEquality().hash(types);
+      const DeepCollectionEquality().hash(types) ^
+      const DeepCollectionEquality().hash(height) ^
+      const DeepCollectionEquality().hash(weight);
 
   @JsonKey(ignore: true)
   @override
@@ -458,7 +500,9 @@ abstract class PokemonDetailsData implements PokemonDetails {
       @JsonKey(name: 'species') required Species species,
       @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
       required Sprites sprites,
-      required List<TypeSlot> types}) = _$PokemonDetailsData;
+      required List<TypeSlot> types,
+      required int height,
+      required int weight}) = _$PokemonDetailsData;
 
   factory PokemonDetailsData.fromJson(Map<String, dynamic> json) =
       _$PokemonDetailsData.fromJson;
@@ -477,6 +521,10 @@ abstract class PokemonDetailsData implements PokemonDetails {
   Sprites get sprites => throw _privateConstructorUsedError;
   @override
   List<TypeSlot> get types => throw _privateConstructorUsedError;
+  @override
+  int get height => throw _privateConstructorUsedError;
+  @override
+  int get weight => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $PokemonDetailsDataCopyWith<PokemonDetailsData> get copyWith =>
@@ -984,12 +1032,16 @@ class _$SpeciesDetailsTearOff {
       {required String name,
       required List<Name> names,
       required PokemonColor color,
-      @JsonKey(name: "genera") required List<Genus> genera}) {
+      @JsonKey(name: "genera")
+          required List<Genus> genera,
+      @JsonKey(name: "flavor_text_entries")
+          required List<FlavorText> flavorTextEntries}) {
     return SpeciesDetailsData(
       name: name,
       names: names,
       color: color,
       genera: genera,
+      flavorTextEntries: flavorTextEntries,
     );
   }
 
@@ -1008,6 +1060,8 @@ mixin _$SpeciesDetails {
   PokemonColor get color => throw _privateConstructorUsedError;
   @JsonKey(name: "genera")
   List<Genus> get genera => throw _privateConstructorUsedError;
+  @JsonKey(name: "flavor_text_entries")
+  List<FlavorText> get flavorTextEntries => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1024,7 +1078,10 @@ abstract class $SpeciesDetailsCopyWith<$Res> {
       {String name,
       List<Name> names,
       PokemonColor color,
-      @JsonKey(name: "genera") List<Genus> genera});
+      @JsonKey(name: "genera")
+          List<Genus> genera,
+      @JsonKey(name: "flavor_text_entries")
+          List<FlavorText> flavorTextEntries});
 
   $PokemonColorCopyWith<$Res> get color;
 }
@@ -1044,6 +1101,7 @@ class _$SpeciesDetailsCopyWithImpl<$Res>
     Object? names = freezed,
     Object? color = freezed,
     Object? genera = freezed,
+    Object? flavorTextEntries = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -1062,6 +1120,10 @@ class _$SpeciesDetailsCopyWithImpl<$Res>
           ? _value.genera
           : genera // ignore: cast_nullable_to_non_nullable
               as List<Genus>,
+      flavorTextEntries: flavorTextEntries == freezed
+          ? _value.flavorTextEntries
+          : flavorTextEntries // ignore: cast_nullable_to_non_nullable
+              as List<FlavorText>,
     ));
   }
 
@@ -1084,7 +1146,10 @@ abstract class $SpeciesDetailsDataCopyWith<$Res>
       {String name,
       List<Name> names,
       PokemonColor color,
-      @JsonKey(name: "genera") List<Genus> genera});
+      @JsonKey(name: "genera")
+          List<Genus> genera,
+      @JsonKey(name: "flavor_text_entries")
+          List<FlavorText> flavorTextEntries});
 
   @override
   $PokemonColorCopyWith<$Res> get color;
@@ -1107,6 +1172,7 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
     Object? names = freezed,
     Object? color = freezed,
     Object? genera = freezed,
+    Object? flavorTextEntries = freezed,
   }) {
     return _then(SpeciesDetailsData(
       name: name == freezed
@@ -1125,6 +1191,10 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
           ? _value.genera
           : genera // ignore: cast_nullable_to_non_nullable
               as List<Genus>,
+      flavorTextEntries: flavorTextEntries == freezed
+          ? _value.flavorTextEntries
+          : flavorTextEntries // ignore: cast_nullable_to_non_nullable
+              as List<FlavorText>,
     ));
   }
 }
@@ -1136,7 +1206,8 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
       {required this.name,
       required this.names,
       required this.color,
-      @JsonKey(name: "genera") required this.genera});
+      @JsonKey(name: "genera") required this.genera,
+      @JsonKey(name: "flavor_text_entries") required this.flavorTextEntries});
 
   factory _$SpeciesDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$SpeciesDetailsDataFromJson(json);
@@ -1150,10 +1221,13 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
   @override
   @JsonKey(name: "genera")
   final List<Genus> genera;
+  @override
+  @JsonKey(name: "flavor_text_entries")
+  final List<FlavorText> flavorTextEntries;
 
   @override
   String toString() {
-    return 'SpeciesDetails(name: $name, names: $names, color: $color, genera: $genera)';
+    return 'SpeciesDetails(name: $name, names: $names, color: $color, genera: $genera, flavorTextEntries: $flavorTextEntries)';
   }
 
   @override
@@ -1167,7 +1241,10 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
             (identical(other.color, color) ||
                 const DeepCollectionEquality().equals(other.color, color)) &&
             (identical(other.genera, genera) ||
-                const DeepCollectionEquality().equals(other.genera, genera)));
+                const DeepCollectionEquality().equals(other.genera, genera)) &&
+            (identical(other.flavorTextEntries, flavorTextEntries) ||
+                const DeepCollectionEquality()
+                    .equals(other.flavorTextEntries, flavorTextEntries)));
   }
 
   @override
@@ -1176,7 +1253,8 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(names) ^
       const DeepCollectionEquality().hash(color) ^
-      const DeepCollectionEquality().hash(genera);
+      const DeepCollectionEquality().hash(genera) ^
+      const DeepCollectionEquality().hash(flavorTextEntries);
 
   @JsonKey(ignore: true)
   @override
@@ -1191,11 +1269,13 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
 
 abstract class SpeciesDetailsData implements SpeciesDetails {
   factory SpeciesDetailsData(
-          {required String name,
-          required List<Name> names,
-          required PokemonColor color,
-          @JsonKey(name: "genera") required List<Genus> genera}) =
-      _$SpeciesDetailsData;
+      {required String name,
+      required List<Name> names,
+      required PokemonColor color,
+      @JsonKey(name: "genera")
+          required List<Genus> genera,
+      @JsonKey(name: "flavor_text_entries")
+          required List<FlavorText> flavorTextEntries}) = _$SpeciesDetailsData;
 
   factory SpeciesDetailsData.fromJson(Map<String, dynamic> json) =
       _$SpeciesDetailsData.fromJson;
@@ -1209,6 +1289,9 @@ abstract class SpeciesDetailsData implements SpeciesDetails {
   @override
   @JsonKey(name: "genera")
   List<Genus> get genera => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: "flavor_text_entries")
+  List<FlavorText> get flavorTextEntries => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SpeciesDetailsDataCopyWith<SpeciesDetailsData> get copyWith =>
@@ -2700,5 +2783,197 @@ abstract class TypeDetailsData implements TypeDetails {
   @override
   @JsonKey(ignore: true)
   $TypeDetailsDataCopyWith<TypeDetailsData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+FlavorText _$FlavorTextFromJson(Map<String, dynamic> json) {
+  return FlavorTextData.fromJson(json);
+}
+
+/// @nodoc
+class _$FlavorTextTearOff {
+  const _$FlavorTextTearOff();
+
+  FlavorTextData call(
+      {@JsonKey(name: "flavor_text") required String flavorText,
+      required Language language}) {
+    return FlavorTextData(
+      flavorText: flavorText,
+      language: language,
+    );
+  }
+
+  FlavorText fromJson(Map<String, Object> json) {
+    return FlavorText.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $FlavorText = _$FlavorTextTearOff();
+
+/// @nodoc
+mixin _$FlavorText {
+  @JsonKey(name: "flavor_text")
+  String get flavorText => throw _privateConstructorUsedError;
+  Language get language => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FlavorTextCopyWith<FlavorText> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FlavorTextCopyWith<$Res> {
+  factory $FlavorTextCopyWith(
+          FlavorText value, $Res Function(FlavorText) then) =
+      _$FlavorTextCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: "flavor_text") String flavorText, Language language});
+
+  $LanguageCopyWith<$Res> get language;
+}
+
+/// @nodoc
+class _$FlavorTextCopyWithImpl<$Res> implements $FlavorTextCopyWith<$Res> {
+  _$FlavorTextCopyWithImpl(this._value, this._then);
+
+  final FlavorText _value;
+  // ignore: unused_field
+  final $Res Function(FlavorText) _then;
+
+  @override
+  $Res call({
+    Object? flavorText = freezed,
+    Object? language = freezed,
+  }) {
+    return _then(_value.copyWith(
+      flavorText: flavorText == freezed
+          ? _value.flavorText
+          : flavorText // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as Language,
+    ));
+  }
+
+  @override
+  $LanguageCopyWith<$Res> get language {
+    return $LanguageCopyWith<$Res>(_value.language, (value) {
+      return _then(_value.copyWith(language: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class $FlavorTextDataCopyWith<$Res>
+    implements $FlavorTextCopyWith<$Res> {
+  factory $FlavorTextDataCopyWith(
+          FlavorTextData value, $Res Function(FlavorTextData) then) =
+      _$FlavorTextDataCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: "flavor_text") String flavorText, Language language});
+
+  @override
+  $LanguageCopyWith<$Res> get language;
+}
+
+/// @nodoc
+class _$FlavorTextDataCopyWithImpl<$Res> extends _$FlavorTextCopyWithImpl<$Res>
+    implements $FlavorTextDataCopyWith<$Res> {
+  _$FlavorTextDataCopyWithImpl(
+      FlavorTextData _value, $Res Function(FlavorTextData) _then)
+      : super(_value, (v) => _then(v as FlavorTextData));
+
+  @override
+  FlavorTextData get _value => super._value as FlavorTextData;
+
+  @override
+  $Res call({
+    Object? flavorText = freezed,
+    Object? language = freezed,
+  }) {
+    return _then(FlavorTextData(
+      flavorText: flavorText == freezed
+          ? _value.flavorText
+          : flavorText // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as Language,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FlavorTextData implements FlavorTextData {
+  const _$FlavorTextData(
+      {@JsonKey(name: "flavor_text") required this.flavorText,
+      required this.language});
+
+  factory _$FlavorTextData.fromJson(Map<String, dynamic> json) =>
+      _$_$FlavorTextDataFromJson(json);
+
+  @override
+  @JsonKey(name: "flavor_text")
+  final String flavorText;
+  @override
+  final Language language;
+
+  @override
+  String toString() {
+    return 'FlavorText(flavorText: $flavorText, language: $language)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is FlavorTextData &&
+            (identical(other.flavorText, flavorText) ||
+                const DeepCollectionEquality()
+                    .equals(other.flavorText, flavorText)) &&
+            (identical(other.language, language) ||
+                const DeepCollectionEquality()
+                    .equals(other.language, language)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(flavorText) ^
+      const DeepCollectionEquality().hash(language);
+
+  @JsonKey(ignore: true)
+  @override
+  $FlavorTextDataCopyWith<FlavorTextData> get copyWith =>
+      _$FlavorTextDataCopyWithImpl<FlavorTextData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$FlavorTextDataToJson(this);
+  }
+}
+
+abstract class FlavorTextData implements FlavorText {
+  const factory FlavorTextData(
+      {@JsonKey(name: "flavor_text") required String flavorText,
+      required Language language}) = _$FlavorTextData;
+
+  factory FlavorTextData.fromJson(Map<String, dynamic> json) =
+      _$FlavorTextData.fromJson;
+
+  @override
+  @JsonKey(name: "flavor_text")
+  String get flavorText => throw _privateConstructorUsedError;
+  @override
+  Language get language => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $FlavorTextDataCopyWith<FlavorTextData> get copyWith =>
       throw _privateConstructorUsedError;
 }

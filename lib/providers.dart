@@ -129,3 +129,21 @@ final pokemonTypeNameProvider = Provider.family<String?, Type>(
         orElse: () => null);
   },
 );
+
+final flavorTextProvider = Provider.family<String?, Species>(
+  (ref, pokemonSpecies) {
+    final speciesDetails = ref.watch(speciesDetailsProvider(pokemonSpecies));
+
+    return speciesDetails.maybeWhen(
+        data: (data) {
+          try {
+            return data.flavorTextEntries.firstWhere((flavorText) {
+              return flavorText.language.name == "ja-Hrkt";
+            }).flavorText;
+          } catch (_) {
+            return pokemonSpecies.name;
+          }
+        },
+        orElse: () => null);
+  },
+);

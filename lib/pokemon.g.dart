@@ -31,6 +31,8 @@ _$PokemonDetailsData _$_$PokemonDetailsDataFromJson(Map<String, dynamic> json) {
     types: (json['types'] as List<dynamic>)
         .map((e) => TypeSlot.fromJson(e as Map<String, dynamic>))
         .toList(),
+    height: json['height'] as int,
+    weight: json['weight'] as int,
   );
 }
 
@@ -43,6 +45,8 @@ Map<String, dynamic> _$_$PokemonDetailsDataToJson(
       'game_indices': instance.gameIndices,
       'sprites': instance.sprites,
       'types': instance.types,
+      'height': instance.height,
+      'weight': instance.weight,
     };
 
 _$NameData _$_$NameDataFromJson(Map<String, dynamic> json) {
@@ -95,6 +99,9 @@ _$SpeciesDetailsData _$_$SpeciesDetailsDataFromJson(Map<String, dynamic> json) {
     genera: (json['genera'] as List<dynamic>)
         .map((e) => Genus.fromJson(e as Map<String, dynamic>))
         .toList(),
+    flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>)
+        .map((e) => FlavorText.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -105,6 +112,7 @@ Map<String, dynamic> _$_$SpeciesDetailsDataToJson(
       'names': instance.names,
       'color': instance.color,
       'genera': instance.genera,
+      'flavor_text_entries': instance.flavorTextEntries,
     };
 
 _$GameIndexData _$_$GameIndexDataFromJson(Map<String, dynamic> json) {
@@ -217,4 +225,17 @@ Map<String, dynamic> _$_$TypeDetailsDataToJson(_$TypeDetailsData instance) =>
       'id': instance.id,
       'name': instance.name,
       'names': instance.names,
+    };
+
+_$FlavorTextData _$_$FlavorTextDataFromJson(Map<String, dynamic> json) {
+  return _$FlavorTextData(
+    flavorText: json['flavor_text'] as String,
+    language: Language.fromJson(json['language'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$_$FlavorTextDataToJson(_$FlavorTextData instance) =>
+    <String, dynamic>{
+      'flavor_text': instance.flavorText,
+      'language': instance.language,
     };

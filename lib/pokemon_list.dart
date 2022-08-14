@@ -184,6 +184,7 @@ class Details extends ConsumerWidget {
         final imageUrls = ref.watch(pokemonImageUrlsProvider(pokemon));
         final selectedIndex = ref.watch(selectedIndexProvider);
         final genus = ref.watch(genusProvider(data.species));
+        final flavorText = ref.watch(flavorTextProvider(data.species));
 
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -287,6 +288,27 @@ class Details extends ConsumerWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Subtitle('高さ'),
+                    Text("${data.height / 10.0}m"),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Subtitle('重さ'),
+                    Text("${data.weight / 10.0}kg"),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                flavorText != null
+                    ? Text(flavorText,
+                        style: GoogleFonts.dotGothic16(fontSize: 13))
+                    : const SizedBox(),
               ],
             ),
           ],

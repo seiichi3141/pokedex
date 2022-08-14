@@ -23,6 +23,8 @@ class PokemonDetails with _$PokemonDetails {
     @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
     required Sprites sprites,
     required List<TypeSlot> types,
+    required int height,
+    required int weight,
   }) = PokemonDetailsData;
 
   factory PokemonDetails.fromJson(Map<String, dynamic> json) =>
@@ -67,6 +69,8 @@ class SpeciesDetails with _$SpeciesDetails {
     required List<Name> names,
     required PokemonColor color,
     @JsonKey(name: "genera") required List<Genus> genera,
+    @JsonKey(name: "flavor_text_entries")
+        required List<FlavorText> flavorTextEntries,
   }) = SpeciesDetailsData;
 
   factory SpeciesDetails.fromJson(Map<String, dynamic> json) =>
@@ -160,4 +164,15 @@ class TypeDetails with _$TypeDetails {
 
   factory TypeDetails.fromJson(Map<String, dynamic> json) =>
       _$TypeDetailsFromJson(json);
+}
+
+@freezed
+class FlavorText with _$FlavorText {
+  const factory FlavorText({
+    @JsonKey(name: "flavor_text") required String flavorText,
+    required Language language,
+  }) = FlavorTextData;
+
+  factory FlavorText.fromJson(Map<String, dynamic> json) =>
+      _$FlavorTextFromJson(json);
 }
