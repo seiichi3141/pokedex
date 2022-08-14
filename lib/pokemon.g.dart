@@ -87,6 +87,7 @@ _$SpeciesDetailsData _$_$SpeciesDetailsDataFromJson(Map<String, dynamic> json) {
     names: (json['names'] as List<dynamic>)
         .map((e) => Name.fromJson(e as Map<String, dynamic>))
         .toList(),
+    color: PokemonColor.fromJson(json['color'] as Map<String, dynamic>),
   );
 }
 
@@ -95,6 +96,7 @@ Map<String, dynamic> _$_$SpeciesDetailsDataToJson(
     <String, dynamic>{
       'name': instance.name,
       'names': instance.names,
+      'color': instance.color,
     };
 
 _$GameIndexData _$_$GameIndexDataFromJson(Map<String, dynamic> json) {
@@ -131,4 +133,15 @@ Map<String, dynamic> _$_$SpritesDataToJson(_$SpritesData instance) =>
       'front_female': instance.frontFemale,
       'front_shiny': instance.frontShiny,
       'front_shiny_female': instance.frontShinyFemale,
+    };
+
+_$PokemonColorData _$_$PokemonColorDataFromJson(Map<String, dynamic> json) {
+  return _$PokemonColorData(
+    name: json['name'] as String,
+  );
+}
+
+Map<String, dynamic> _$_$PokemonColorDataToJson(_$PokemonColorData instance) =>
+    <String, dynamic>{
+      'name': instance.name,
     };

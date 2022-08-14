@@ -955,10 +955,14 @@ SpeciesDetails _$SpeciesDetailsFromJson(Map<String, dynamic> json) {
 class _$SpeciesDetailsTearOff {
   const _$SpeciesDetailsTearOff();
 
-  SpeciesDetailsData call({required String name, required List<Name> names}) {
+  SpeciesDetailsData call(
+      {required String name,
+      required List<Name> names,
+      required PokemonColor color}) {
     return SpeciesDetailsData(
       name: name,
       names: names,
+      color: color,
     );
   }
 
@@ -974,6 +978,7 @@ const $SpeciesDetails = _$SpeciesDetailsTearOff();
 mixin _$SpeciesDetails {
   String get name => throw _privateConstructorUsedError;
   List<Name> get names => throw _privateConstructorUsedError;
+  PokemonColor get color => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -986,7 +991,9 @@ abstract class $SpeciesDetailsCopyWith<$Res> {
   factory $SpeciesDetailsCopyWith(
           SpeciesDetails value, $Res Function(SpeciesDetails) then) =
       _$SpeciesDetailsCopyWithImpl<$Res>;
-  $Res call({String name, List<Name> names});
+  $Res call({String name, List<Name> names, PokemonColor color});
+
+  $PokemonColorCopyWith<$Res> get color;
 }
 
 /// @nodoc
@@ -1002,6 +1009,7 @@ class _$SpeciesDetailsCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? names = freezed,
+    Object? color = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -1012,7 +1020,18 @@ class _$SpeciesDetailsCopyWithImpl<$Res>
           ? _value.names
           : names // ignore: cast_nullable_to_non_nullable
               as List<Name>,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as PokemonColor,
     ));
+  }
+
+  @override
+  $PokemonColorCopyWith<$Res> get color {
+    return $PokemonColorCopyWith<$Res>(_value.color, (value) {
+      return _then(_value.copyWith(color: value));
+    });
   }
 }
 
@@ -1023,7 +1042,10 @@ abstract class $SpeciesDetailsDataCopyWith<$Res>
           SpeciesDetailsData value, $Res Function(SpeciesDetailsData) then) =
       _$SpeciesDetailsDataCopyWithImpl<$Res>;
   @override
-  $Res call({String name, List<Name> names});
+  $Res call({String name, List<Name> names, PokemonColor color});
+
+  @override
+  $PokemonColorCopyWith<$Res> get color;
 }
 
 /// @nodoc
@@ -1041,6 +1063,7 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? names = freezed,
+    Object? color = freezed,
   }) {
     return _then(SpeciesDetailsData(
       name: name == freezed
@@ -1051,6 +1074,10 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
           ? _value.names
           : names // ignore: cast_nullable_to_non_nullable
               as List<Name>,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as PokemonColor,
     ));
   }
 }
@@ -1058,7 +1085,8 @@ class _$SpeciesDetailsDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpeciesDetailsData implements SpeciesDetailsData {
-  _$SpeciesDetailsData({required this.name, required this.names});
+  _$SpeciesDetailsData(
+      {required this.name, required this.names, required this.color});
 
   factory _$SpeciesDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$SpeciesDetailsDataFromJson(json);
@@ -1067,10 +1095,12 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
   final String name;
   @override
   final List<Name> names;
+  @override
+  final PokemonColor color;
 
   @override
   String toString() {
-    return 'SpeciesDetails(name: $name, names: $names)';
+    return 'SpeciesDetails(name: $name, names: $names, color: $color)';
   }
 
   @override
@@ -1080,14 +1110,17 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.names, names) ||
-                const DeepCollectionEquality().equals(other.names, names)));
+                const DeepCollectionEquality().equals(other.names, names)) &&
+            (identical(other.color, color) ||
+                const DeepCollectionEquality().equals(other.color, color)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(names);
+      const DeepCollectionEquality().hash(names) ^
+      const DeepCollectionEquality().hash(color);
 
   @JsonKey(ignore: true)
   @override
@@ -1102,7 +1135,9 @@ class _$SpeciesDetailsData implements SpeciesDetailsData {
 
 abstract class SpeciesDetailsData implements SpeciesDetails {
   factory SpeciesDetailsData(
-      {required String name, required List<Name> names}) = _$SpeciesDetailsData;
+      {required String name,
+      required List<Name> names,
+      required PokemonColor color}) = _$SpeciesDetailsData;
 
   factory SpeciesDetailsData.fromJson(Map<String, dynamic> json) =
       _$SpeciesDetailsData.fromJson;
@@ -1111,6 +1146,8 @@ abstract class SpeciesDetailsData implements SpeciesDetails {
   String get name => throw _privateConstructorUsedError;
   @override
   List<Name> get names => throw _privateConstructorUsedError;
+  @override
+  PokemonColor get color => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SpeciesDetailsDataCopyWith<SpeciesDetailsData> get copyWith =>
@@ -1616,5 +1653,153 @@ abstract class SpritesData implements Sprites {
   @override
   @JsonKey(ignore: true)
   $SpritesDataCopyWith<SpritesData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PokemonColor _$PokemonColorFromJson(Map<String, dynamic> json) {
+  return PokemonColorData.fromJson(json);
+}
+
+/// @nodoc
+class _$PokemonColorTearOff {
+  const _$PokemonColorTearOff();
+
+  PokemonColorData call({required String name}) {
+    return PokemonColorData(
+      name: name,
+    );
+  }
+
+  PokemonColor fromJson(Map<String, Object> json) {
+    return PokemonColor.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $PokemonColor = _$PokemonColorTearOff();
+
+/// @nodoc
+mixin _$PokemonColor {
+  String get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PokemonColorCopyWith<PokemonColor> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PokemonColorCopyWith<$Res> {
+  factory $PokemonColorCopyWith(
+          PokemonColor value, $Res Function(PokemonColor) then) =
+      _$PokemonColorCopyWithImpl<$Res>;
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$PokemonColorCopyWithImpl<$Res> implements $PokemonColorCopyWith<$Res> {
+  _$PokemonColorCopyWithImpl(this._value, this._then);
+
+  final PokemonColor _value;
+  // ignore: unused_field
+  final $Res Function(PokemonColor) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $PokemonColorDataCopyWith<$Res>
+    implements $PokemonColorCopyWith<$Res> {
+  factory $PokemonColorDataCopyWith(
+          PokemonColorData value, $Res Function(PokemonColorData) then) =
+      _$PokemonColorDataCopyWithImpl<$Res>;
+  @override
+  $Res call({String name});
+}
+
+/// @nodoc
+class _$PokemonColorDataCopyWithImpl<$Res>
+    extends _$PokemonColorCopyWithImpl<$Res>
+    implements $PokemonColorDataCopyWith<$Res> {
+  _$PokemonColorDataCopyWithImpl(
+      PokemonColorData _value, $Res Function(PokemonColorData) _then)
+      : super(_value, (v) => _then(v as PokemonColorData));
+
+  @override
+  PokemonColorData get _value => super._value as PokemonColorData;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(PokemonColorData(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PokemonColorData implements PokemonColorData {
+  const _$PokemonColorData({required this.name});
+
+  factory _$PokemonColorData.fromJson(Map<String, dynamic> json) =>
+      _$_$PokemonColorDataFromJson(json);
+
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'PokemonColor(name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PokemonColorData &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+
+  @JsonKey(ignore: true)
+  @override
+  $PokemonColorDataCopyWith<PokemonColorData> get copyWith =>
+      _$PokemonColorDataCopyWithImpl<PokemonColorData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$PokemonColorDataToJson(this);
+  }
+}
+
+abstract class PokemonColorData implements PokemonColor {
+  const factory PokemonColorData({required String name}) = _$PokemonColorData;
+
+  factory PokemonColorData.fromJson(Map<String, dynamic> json) =
+      _$PokemonColorData.fromJson;
+
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $PokemonColorDataCopyWith<PokemonColorData> get copyWith =>
       throw _privateConstructorUsedError;
 }

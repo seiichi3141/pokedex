@@ -53,8 +53,10 @@ class PokemonListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemonDetails = ref.watch(pokemonDetailsProvider(pokemon));
+    final color = ref.watch(pokemonColorProvider(pokemon));
 
     return Card(
+      color: color.shade50,
       margin: const EdgeInsets.all(8),
       child: pokemonDetails.maybeWhen(
         data: (data) {

@@ -64,6 +64,7 @@ class SpeciesDetails with _$SpeciesDetails {
   factory SpeciesDetails({
     required String name,
     required List<Name> names,
+    required PokemonColor color,
   }) = SpeciesDetailsData;
 
   factory SpeciesDetails.fromJson(Map<String, dynamic> json) =>
@@ -95,4 +96,14 @@ class Sprites with _$Sprites {
 
   factory Sprites.fromJson(Map<String, dynamic> json) =>
       _$SpritesFromJson(json);
+}
+
+@freezed
+class PokemonColor with _$PokemonColor {
+  const factory PokemonColor({
+    required String name,
+  }) = PokemonColorData;
+
+  factory PokemonColor.fromJson(Map<String, dynamic> json) =>
+      _$PokemonColorFromJson(json);
 }

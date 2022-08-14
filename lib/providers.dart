@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/pokemon.dart';
 import 'package:pokedex/poke_provider.dart';
@@ -48,5 +49,44 @@ final pokemonImageUrlsProvider =
       value.sprites.backShinyFemale,
     ].whereType<String>().toList(),
     orElse: () => null,
+  );
+});
+
+final pokemonColorProvider =
+    Provider.family<MaterialColor, Pokemon>((ref, pokemon) {
+  final pokemonDetails = ref.watch(pokemonDetailsProvider(pokemon));
+
+  return pokemonDetails.maybeWhen(
+    data: (value) {
+      final speciesDetails =
+          ref.watch(speciesDetailsProvider(value.species));
+      return speciesDetails.maybeWhen(
+        data: (data) {
+          switch (data.color.name) {
+            case "red":
+              return Colors.red;
+            case "blue":
+              return Colors.blue;
+            case "green":
+              return Colors.green;
+            case "yellow":
+              return Colors.yellow;
+            case "brown":
+              return Colors.brown;
+            case "purple":
+              return Colors.purple;
+            case "pink":
+              return Colors.pink;
+            case "grey":
+              return Colors.grey;
+            default:
+              break;
+          }
+          return Colors.grey;
+        },
+        orElse: () => Colors.grey,
+      );
+    },
+    orElse: () => Colors.grey,
   );
 });
