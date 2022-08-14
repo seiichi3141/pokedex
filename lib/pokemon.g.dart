@@ -24,6 +24,9 @@ _$PokemonDetailsData _$_$PokemonDetailsDataFromJson(Map<String, dynamic> json) {
     id: json['id'] as int,
     name: json['name'] as String,
     species: Species.fromJson(json['species'] as Map<String, dynamic>),
+    gameIndices: (json['game_indices'] as List<dynamic>)
+        .map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -33,6 +36,7 @@ Map<String, dynamic> _$_$PokemonDetailsDataToJson(
       'id': instance.id,
       'name': instance.name,
       'species': instance.species,
+      'game_indices': instance.gameIndices,
     };
 
 _$NameData _$_$NameDataFromJson(Map<String, dynamic> json) {
@@ -89,4 +93,15 @@ Map<String, dynamic> _$_$SpeciesDetailsDataToJson(
     <String, dynamic>{
       'name': instance.name,
       'names': instance.names,
+    };
+
+_$GameIndexData _$_$GameIndexDataFromJson(Map<String, dynamic> json) {
+  return _$GameIndexData(
+    gameIndex: json['game_index'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$GameIndexDataToJson(_$GameIndexData instance) =>
+    <String, dynamic>{
+      'game_index': instance.gameIndex,
     };

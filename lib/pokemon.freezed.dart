@@ -188,11 +188,13 @@ class _$PokemonDetailsTearOff {
   PokemonDetailsData call(
       {required int id,
       required String name,
-      @JsonKey(name: 'species') required Species species}) {
+      @JsonKey(name: 'species') required Species species,
+      @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices}) {
     return PokemonDetailsData(
       id: id,
       name: name,
       species: species,
+      gameIndices: gameIndices,
     );
   }
 
@@ -210,6 +212,8 @@ mixin _$PokemonDetails {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'species')
   Species get species => throw _privateConstructorUsedError;
+  @JsonKey(name: 'game_indices')
+  List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -222,7 +226,11 @@ abstract class $PokemonDetailsCopyWith<$Res> {
   factory $PokemonDetailsCopyWith(
           PokemonDetails value, $Res Function(PokemonDetails) then) =
       _$PokemonDetailsCopyWithImpl<$Res>;
-  $Res call({int id, String name, @JsonKey(name: 'species') Species species});
+  $Res call(
+      {int id,
+      String name,
+      @JsonKey(name: 'species') Species species,
+      @JsonKey(name: 'game_indices') List<GameIndex> gameIndices});
 
   $SpeciesCopyWith<$Res> get species;
 }
@@ -241,6 +249,7 @@ class _$PokemonDetailsCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? species = freezed,
+    Object? gameIndices = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -255,6 +264,10 @@ class _$PokemonDetailsCopyWithImpl<$Res>
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
               as Species,
+      gameIndices: gameIndices == freezed
+          ? _value.gameIndices
+          : gameIndices // ignore: cast_nullable_to_non_nullable
+              as List<GameIndex>,
     ));
   }
 
@@ -273,7 +286,11 @@ abstract class $PokemonDetailsDataCopyWith<$Res>
           PokemonDetailsData value, $Res Function(PokemonDetailsData) then) =
       _$PokemonDetailsDataCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String name, @JsonKey(name: 'species') Species species});
+  $Res call(
+      {int id,
+      String name,
+      @JsonKey(name: 'species') Species species,
+      @JsonKey(name: 'game_indices') List<GameIndex> gameIndices});
 
   @override
   $SpeciesCopyWith<$Res> get species;
@@ -295,6 +312,7 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? species = freezed,
+    Object? gameIndices = freezed,
   }) {
     return _then(PokemonDetailsData(
       id: id == freezed
@@ -309,6 +327,10 @@ class _$PokemonDetailsDataCopyWithImpl<$Res>
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
               as Species,
+      gameIndices: gameIndices == freezed
+          ? _value.gameIndices
+          : gameIndices // ignore: cast_nullable_to_non_nullable
+              as List<GameIndex>,
     ));
   }
 }
@@ -319,7 +341,8 @@ class _$PokemonDetailsData implements PokemonDetailsData {
   _$PokemonDetailsData(
       {required this.id,
       required this.name,
-      @JsonKey(name: 'species') required this.species});
+      @JsonKey(name: 'species') required this.species,
+      @JsonKey(name: 'game_indices') required this.gameIndices});
 
   factory _$PokemonDetailsData.fromJson(Map<String, dynamic> json) =>
       _$_$PokemonDetailsDataFromJson(json);
@@ -331,10 +354,13 @@ class _$PokemonDetailsData implements PokemonDetailsData {
   @override
   @JsonKey(name: 'species')
   final Species species;
+  @override
+  @JsonKey(name: 'game_indices')
+  final List<GameIndex> gameIndices;
 
   @override
   String toString() {
-    return 'PokemonDetails(id: $id, name: $name, species: $species)';
+    return 'PokemonDetails(id: $id, name: $name, species: $species, gameIndices: $gameIndices)';
   }
 
   @override
@@ -346,7 +372,11 @@ class _$PokemonDetailsData implements PokemonDetailsData {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.species, species) ||
-                const DeepCollectionEquality().equals(other.species, species)));
+                const DeepCollectionEquality()
+                    .equals(other.species, species)) &&
+            (identical(other.gameIndices, gameIndices) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameIndices, gameIndices)));
   }
 
   @override
@@ -354,7 +384,8 @@ class _$PokemonDetailsData implements PokemonDetailsData {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(species);
+      const DeepCollectionEquality().hash(species) ^
+      const DeepCollectionEquality().hash(gameIndices);
 
   @JsonKey(ignore: true)
   @override
@@ -369,10 +400,12 @@ class _$PokemonDetailsData implements PokemonDetailsData {
 
 abstract class PokemonDetailsData implements PokemonDetails {
   factory PokemonDetailsData(
-          {required int id,
-          required String name,
-          @JsonKey(name: 'species') required Species species}) =
-      _$PokemonDetailsData;
+      {required int id,
+      required String name,
+      @JsonKey(name: 'species')
+          required Species species,
+      @JsonKey(name: 'game_indices')
+          required List<GameIndex> gameIndices}) = _$PokemonDetailsData;
 
   factory PokemonDetailsData.fromJson(Map<String, dynamic> json) =
       _$PokemonDetailsData.fromJson;
@@ -384,6 +417,9 @@ abstract class PokemonDetailsData implements PokemonDetails {
   @override
   @JsonKey(name: 'species')
   Species get species => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'game_indices')
+  List<GameIndex> get gameIndices => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $PokemonDetailsDataCopyWith<PokemonDetailsData> get copyWith =>
@@ -1046,5 +1082,156 @@ abstract class SpeciesDetailsData implements SpeciesDetails {
   @override
   @JsonKey(ignore: true)
   $SpeciesDetailsDataCopyWith<SpeciesDetailsData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GameIndex _$GameIndexFromJson(Map<String, dynamic> json) {
+  return GameIndexData.fromJson(json);
+}
+
+/// @nodoc
+class _$GameIndexTearOff {
+  const _$GameIndexTearOff();
+
+  GameIndexData call({@JsonKey(name: "game_index") required int gameIndex}) {
+    return GameIndexData(
+      gameIndex: gameIndex,
+    );
+  }
+
+  GameIndex fromJson(Map<String, Object> json) {
+    return GameIndex.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $GameIndex = _$GameIndexTearOff();
+
+/// @nodoc
+mixin _$GameIndex {
+  @JsonKey(name: "game_index")
+  int get gameIndex => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameIndexCopyWith<GameIndex> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameIndexCopyWith<$Res> {
+  factory $GameIndexCopyWith(GameIndex value, $Res Function(GameIndex) then) =
+      _$GameIndexCopyWithImpl<$Res>;
+  $Res call({@JsonKey(name: "game_index") int gameIndex});
+}
+
+/// @nodoc
+class _$GameIndexCopyWithImpl<$Res> implements $GameIndexCopyWith<$Res> {
+  _$GameIndexCopyWithImpl(this._value, this._then);
+
+  final GameIndex _value;
+  // ignore: unused_field
+  final $Res Function(GameIndex) _then;
+
+  @override
+  $Res call({
+    Object? gameIndex = freezed,
+  }) {
+    return _then(_value.copyWith(
+      gameIndex: gameIndex == freezed
+          ? _value.gameIndex
+          : gameIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $GameIndexDataCopyWith<$Res>
+    implements $GameIndexCopyWith<$Res> {
+  factory $GameIndexDataCopyWith(
+          GameIndexData value, $Res Function(GameIndexData) then) =
+      _$GameIndexDataCopyWithImpl<$Res>;
+  @override
+  $Res call({@JsonKey(name: "game_index") int gameIndex});
+}
+
+/// @nodoc
+class _$GameIndexDataCopyWithImpl<$Res> extends _$GameIndexCopyWithImpl<$Res>
+    implements $GameIndexDataCopyWith<$Res> {
+  _$GameIndexDataCopyWithImpl(
+      GameIndexData _value, $Res Function(GameIndexData) _then)
+      : super(_value, (v) => _then(v as GameIndexData));
+
+  @override
+  GameIndexData get _value => super._value as GameIndexData;
+
+  @override
+  $Res call({
+    Object? gameIndex = freezed,
+  }) {
+    return _then(GameIndexData(
+      gameIndex: gameIndex == freezed
+          ? _value.gameIndex
+          : gameIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GameIndexData implements GameIndexData {
+  _$GameIndexData({@JsonKey(name: "game_index") required this.gameIndex});
+
+  factory _$GameIndexData.fromJson(Map<String, dynamic> json) =>
+      _$_$GameIndexDataFromJson(json);
+
+  @override
+  @JsonKey(name: "game_index")
+  final int gameIndex;
+
+  @override
+  String toString() {
+    return 'GameIndex(gameIndex: $gameIndex)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GameIndexData &&
+            (identical(other.gameIndex, gameIndex) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameIndex, gameIndex)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameIndexDataCopyWith<GameIndexData> get copyWith =>
+      _$GameIndexDataCopyWithImpl<GameIndexData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$GameIndexDataToJson(this);
+  }
+}
+
+abstract class GameIndexData implements GameIndex {
+  factory GameIndexData({@JsonKey(name: "game_index") required int gameIndex}) =
+      _$GameIndexData;
+
+  factory GameIndexData.fromJson(Map<String, dynamic> json) =
+      _$GameIndexData.fromJson;
+
+  @override
+  @JsonKey(name: "game_index")
+  int get gameIndex => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $GameIndexDataCopyWith<GameIndexData> get copyWith =>
       throw _privateConstructorUsedError;
 }

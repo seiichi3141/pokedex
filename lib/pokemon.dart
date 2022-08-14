@@ -20,6 +20,7 @@ class PokemonDetails with _$PokemonDetails {
     required int id,
     required String name,
     @JsonKey(name: 'species') required Species species,
+    @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
   }) = PokemonDetailsData;
 
   factory PokemonDetails.fromJson(Map<String, dynamic> json) =>
@@ -66,4 +67,14 @@ class SpeciesDetails with _$SpeciesDetails {
 
   factory SpeciesDetails.fromJson(Map<String, dynamic> json) =>
       _$SpeciesDetailsFromJson(json);
+}
+
+@freezed
+class GameIndex with _$GameIndex {
+  factory GameIndex({
+    @JsonKey(name: "game_index") required int gameIndex,
+  }) = GameIndexData;
+
+  factory GameIndex.fromJson(Map<String, dynamic> json) =>
+      _$GameIndexFromJson(json);
 }

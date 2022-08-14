@@ -18,3 +18,17 @@ final nameProvider = Provider.family<String, Species>((ref, species) {
     orElse: () => "",
   );
 });
+
+final gameIndexProvider = Provider.family<String, Pokemon>((ref, pokemon) {
+  final pokemonDetails = ref.watch(pokemonDetailsProvider(pokemon));
+
+  return pokemonDetails.maybeWhen(
+    data: (value) {
+      if (value.gameIndices.isEmpty) {
+        return value.id.toString().padLeft(3, "0");
+      }
+      return value.gameIndices.last.gameIndex.toString().padLeft(3, "0");
+    },
+    orElse: () => "---",
+  );
+});

@@ -57,6 +57,7 @@ class PokemonListTile extends ConsumerWidget {
       margin: const EdgeInsets.all(8),
       child: pokemonDetails.maybeWhen(
         data: (data) {
+          final gameIndex = ref.watch(gameIndexProvider(pokemon));
           final name = ref.watch(nameProvider(data.species));
           return  InkWell(
             child: LayoutBuilder(
@@ -67,6 +68,16 @@ class PokemonListTile extends ConsumerWidget {
                     padding: const EdgeInsets.all(8),
                     child: Row(
                       children: [
+                        Expanded(
+                          child: Text(
+                            gameIndex,
+                            style: GoogleFonts.delaGothicOne(
+                              fontSize: 28,
+                              height: 1,
+                              color: Colors.black12,
+                            ),
+                          ),
+                        ),
                         Expanded(
                           child: Text(
                             name,
