@@ -1,16 +1,21 @@
-# pokedex
+# poke_guide
 
-A new Flutter project.
 
-## Getting Started
+```
+flutter pub add dio_http_cache flutter_riverpod freezed freezed_annotation json_serializable build_runner cached_network_image google_fonts
+```
 
-This project is a starting point for a Flutter application.
+```
+include: package:flutter_lints/flutter.yaml
 
-A few resources to get you started if this is your first Flutter project:
+linter:
+  rules:
+    depend_on_referenced_packages: 0
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore
+```
