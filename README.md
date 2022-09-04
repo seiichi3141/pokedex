@@ -1,5 +1,4 @@
-# poke_guide
-
+# Pokedex Flutter
 
 ```
 flutter pub add dio_http_cache flutter_riverpod freezed freezed_annotation json_serializable build_runner cached_network_image google_fonts
