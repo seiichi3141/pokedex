@@ -7,46 +7,50 @@ import 'package:pokedex/pokemon.dart';
 import 'package:pokedex/providers.dart';
 
 class PokemonList extends ConsumerWidget {
+  const PokemonList({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemons = ref.watch(pokemonsProvider);
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            title: Text(
-              "ポケモン図鑑",
-              style: GoogleFonts.delaGothicOne(),
+      body: Scrollbar(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              title: Text(
+                "ポケモン図鑑",
+                style: GoogleFonts.delaGothicOne(),
+              ),
+              centerTitle: true,
+              floating: true,
             ),
-            centerTitle: true,
-            floating: true,
-          ),
-          pokemons.maybeWhen(
-            data: (data) {
-              return SliverPadding(
-                padding: const EdgeInsets.all(8),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) => PokemonListTile(data[index]),
+            pokemons.maybeWhen(
+              data: (data) {
+                return SliverPadding(
+                  padding: const EdgeInsets.all(8),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => PokemonListTile(pokemon: data[index]),
+                    ),
                   ),
+                );
+              },
+              orElse: () => const SliverFillRemaining(
+                child: Center(
+                  child: CircularProgressIndicator(),
                 ),
-              );
-            },
-            orElse: () => SliverFillRemaining(
-              child: const Center(
-                child: CircularProgressIndicator(),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class PokemonListTile extends ConsumerWidget {
-  PokemonListTile(this.pokemon);
+  const PokemonListTile({super.key, required this.pokemon});
 
   final Pokemon pokemon;
 
@@ -60,8 +64,6 @@ class PokemonListTile extends ConsumerWidget {
       margin: const EdgeInsets.all(8),
       child: pokemonDetails.maybeWhen(
         data: (data) {
-          final gameIndex = ref.watch(gameIndexProvider(pokemon));
-          final name = ref.watch(nameProvider(data.species));
           return InkWell(
             child: LayoutBuilder(
               builder: ((context, constraints) {
@@ -69,7 +71,7 @@ class PokemonListTile extends ConsumerWidget {
                   Positioned(
                     top: -32,
                     right: constraints.maxWidth / 2 - 10,
-                    child: Thumbnail(pokemon, width: 128, height: 128),
+                    child: PokemonThumbnail(pokemon, width: 128, height: 128),
                   ),
                   Container(
                     height: 64,
@@ -77,23 +79,10 @@ class PokemonListTile extends ConsumerWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text(
-                            gameIndex,
-                            style: GoogleFonts.delaGothicOne(
-                              fontSize: 28,
-                              height: 1,
-                              color: Colors.black12,
-                            ),
-                          ),
+                          child: PokemonIndex(pokemon: pokemon),
                         ),
                         Expanded(
-                          child: Text(
-                            name,
-                            style: GoogleFonts.delaGothicOne(
-                              fontSize: 28,
-                              height: 1,
-                            ),
-                          ),
+                          child: PokemonName(species: data.species),
                         ),
                       ],
                     ),
@@ -128,7 +117,7 @@ class PokemonListTile extends ConsumerWidget {
             backgroundColor: color,
             child: Padding(
               padding: const EdgeInsets.all(24),
-              child: Details(pokemon: pokemon),
+              child: PokemonDetails(pokemon: pokemon),
             ),
           ),
         );
@@ -138,8 +127,46 @@ class PokemonListTile extends ConsumerWidget {
   }
 }
 
-class Thumbnail extends ConsumerWidget {
-  const Thumbnail(this.pokemon, {Key? key, this.width, this.height})
+class PokemonName extends ConsumerWidget {
+  const PokemonName({
+    super.key,
+    required this.species,
+  });
+
+  final Species species;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final name = ref.watch(nameProvider(species));
+    return Text(
+      name,
+      style: Theme.of(context).textTheme.displayLarge,
+    );
+  }
+}
+
+class PokemonIndex extends ConsumerWidget {
+  const PokemonIndex({
+    super.key,
+    required this.pokemon,
+  });
+
+  final Pokemon pokemon;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gameIndex = ref.watch(gameIndexProvider(pokemon));
+    return Text(
+      gameIndex,
+      style: Theme.of(context).textTheme.displayLarge!.copyWith(
+            color: Colors.black45,
+          ),
+    );
+  }
+}
+
+class PokemonThumbnail extends ConsumerWidget {
+  const PokemonThumbnail(this.pokemon, {Key? key, this.width, this.height})
       : super(key: key);
 
   final Pokemon pokemon;
@@ -150,7 +177,7 @@ class Thumbnail extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final imageUrls = ref.watch(pokemonImageUrlsProvider(pokemon));
 
-    return Container(
+    return SizedBox(
       width: width ?? 64,
       height: height ?? 64,
       child: imageUrls != null && imageUrls.isNotEmpty
@@ -167,8 +194,8 @@ class Thumbnail extends ConsumerWidget {
 
 final selectedIndexProvider = StateProvider.autoDispose((_) => 0);
 
-class Details extends ConsumerWidget {
-  Details({Key? key, required this.pokemon}) : super(key: key);
+class PokemonDetails extends ConsumerWidget {
+  PokemonDetails({Key? key, required this.pokemon}) : super(key: key);
 
   final Pokemon pokemon;
   final controller = PageController();
@@ -179,8 +206,6 @@ class Details extends ConsumerWidget {
 
     return pokemonDetails.maybeWhen(
       data: (data) {
-        final gameIndex = ref.watch(gameIndexProvider(pokemon));
-        final name = ref.watch(nameProvider(data.species));
         final imageUrls = ref.watch(pokemonImageUrlsProvider(pokemon));
         final selectedIndex = ref.watch(selectedIndexProvider);
         final genus = ref.watch(genusProvider(data.species));
@@ -188,42 +213,27 @@ class Details extends ConsumerWidget {
 
         return Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: Row(
-                children: [
-                  Text(
-                    gameIndex,
-                    style: GoogleFonts.delaGothicOne(
-                      fontSize: 28,
-                      height: 1,
-                      color: Colors.black26,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    name,
-                    style: GoogleFonts.delaGothicOne(
-                      fontSize: 32,
-                      height: 1,
-                    ),
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                PokemonIndex(pokemon: pokemon),
+                const SizedBox(width: 8),
+                PokemonName(species: data.species),
+              ],
             ),
             imageUrls != null
                 ? SizedBox(
-                    width: 150,
-                    height: 150,
+                    width: 200,
+                    height: 200,
                     child: PageView(
                       controller: controller,
                       children: imageUrls
                           .map((url) => CachedNetworkImage(
                                 imageUrl: url,
                                 fit: BoxFit.contain,
-                                width: 150,
-                                height: 150,
+                                width: 200,
+                                height: 200,
                               ))
                           .toList(),
                       onPageChanged: (page) {
@@ -271,7 +281,7 @@ class Details extends ConsumerWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Subtitle('分類'),
+                    const Subtitle('分類'),
                     Text(genus ?? ""),
                   ],
                 ),
@@ -279,7 +289,7 @@ class Details extends ConsumerWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Subtitle('タイプ'),
+                    const Subtitle('タイプ'),
                     Wrap(
                       spacing: 4,
                       children: [
@@ -292,7 +302,7 @@ class Details extends ConsumerWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Subtitle('高さ'),
+                    const Subtitle('高さ'),
                     Text("${data.height / 10.0}m"),
                   ],
                 ),
@@ -300,15 +310,15 @@ class Details extends ConsumerWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Subtitle('重さ'),
+                    const Subtitle('重さ'),
                     Text("${data.weight / 10.0}kg"),
                   ],
                 ),
                 const SizedBox(height: 16),
-                flavorText != null
-                    ? Text(flavorText,
-                        style: GoogleFonts.dotGothic16(fontSize: 13))
-                    : const SizedBox(),
+                Text(
+                  flavorText ?? "",
+                  style: GoogleFonts.dotGothic16TextTheme().bodyLarge,
+                ),
               ],
             ),
           ],
@@ -320,7 +330,7 @@ class Details extends ConsumerWidget {
 }
 
 class Subtitle extends StatelessWidget {
-  const Subtitle(this.label);
+  const Subtitle(this.label, {super.key});
 
   final String label;
 
@@ -328,7 +338,7 @@ class Subtitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 70,
-      child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+      child: Text(label, style: Theme.of(context).textTheme.titleSmall),
     );
   }
 }
@@ -347,9 +357,9 @@ class PokemonType extends ConsumerWidget {
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
               border: Border.all(color: Colors.grey.shade400),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderRadius: const BorderRadius.all(Radius.circular(4)),
             ),
-            child: Text(name, style: Theme.of(context).textTheme.caption),
+            child: Text(name, style: Theme.of(context).textTheme.bodySmall),
           )
         : const SizedBox();
   }

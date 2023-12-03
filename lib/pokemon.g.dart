@@ -6,38 +6,37 @@ part of 'pokemon.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PokemonData _$_$PokemonDataFromJson(Map<String, dynamic> json) {
-  return _$PokemonData(
-    name: json['name'] as String,
-    url: json['url'] as String,
-  );
-}
+_$PokemonDataImpl _$$PokemonDataImplFromJson(Map<String, dynamic> json) =>
+    _$PokemonDataImpl(
+      name: json['name'] as String,
+      url: json['url'] as String,
+    );
 
-Map<String, dynamic> _$_$PokemonDataToJson(_$PokemonData instance) =>
+Map<String, dynamic> _$$PokemonDataImplToJson(_$PokemonDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'url': instance.url,
     };
 
-_$PokemonDetailsData _$_$PokemonDetailsDataFromJson(Map<String, dynamic> json) {
-  return _$PokemonDetailsData(
-    id: json['id'] as int,
-    name: json['name'] as String,
-    species: Species.fromJson(json['species'] as Map<String, dynamic>),
-    gameIndices: (json['game_indices'] as List<dynamic>)
-        .map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    sprites: Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
-    types: (json['types'] as List<dynamic>)
-        .map((e) => TypeSlot.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    height: json['height'] as int,
-    weight: json['weight'] as int,
-  );
-}
+_$PokemonDetailsDataImpl _$$PokemonDetailsDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PokemonDetailsDataImpl(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      species: Species.fromJson(json['species'] as Map<String, dynamic>),
+      gameIndices: (json['game_indices'] as List<dynamic>)
+          .map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sprites: Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
+      types: (json['types'] as List<dynamic>)
+          .map((e) => TypeSlot.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      height: json['height'] as int,
+      weight: json['weight'] as int,
+    );
 
-Map<String, dynamic> _$_$PokemonDetailsDataToJson(
-        _$PokemonDetailsData instance) =>
+Map<String, dynamic> _$$PokemonDetailsDataImplToJson(
+        _$PokemonDetailsDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -49,64 +48,61 @@ Map<String, dynamic> _$_$PokemonDetailsDataToJson(
       'weight': instance.weight,
     };
 
-_$NameData _$_$NameDataFromJson(Map<String, dynamic> json) {
-  return _$NameData(
-    name: json['name'] as String,
-    language:
-        NameAPIResource.fromJson(json['language'] as Map<String, dynamic>),
-  );
-}
+_$NameDataImpl _$$NameDataImplFromJson(Map<String, dynamic> json) =>
+    _$NameDataImpl(
+      name: json['name'] as String,
+      language:
+          NameAPIResource.fromJson(json['language'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$NameDataToJson(_$NameData instance) =>
+Map<String, dynamic> _$$NameDataImplToJson(_$NameDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'language': instance.language,
     };
 
-_$NameAPIResourceData _$_$NameAPIResourceDataFromJson(
-    Map<String, dynamic> json) {
-  return _$NameAPIResourceData(
-    name: json['name'] as String,
-  );
-}
+_$NameAPIResourceDataImpl _$$NameAPIResourceDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$NameAPIResourceDataImpl(
+      name: json['name'] as String,
+    );
 
-Map<String, dynamic> _$_$NameAPIResourceDataToJson(
-        _$NameAPIResourceData instance) =>
+Map<String, dynamic> _$$NameAPIResourceDataImplToJson(
+        _$NameAPIResourceDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
     };
 
-_$SpeciesData _$_$SpeciesDataFromJson(Map<String, dynamic> json) {
-  return _$SpeciesData(
-    name: json['name'] as String,
-    url: json['url'] as String,
-  );
-}
+_$SpeciesDataImpl _$$SpeciesDataImplFromJson(Map<String, dynamic> json) =>
+    _$SpeciesDataImpl(
+      name: json['name'] as String,
+      url: json['url'] as String,
+    );
 
-Map<String, dynamic> _$_$SpeciesDataToJson(_$SpeciesData instance) =>
+Map<String, dynamic> _$$SpeciesDataImplToJson(_$SpeciesDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'url': instance.url,
     };
 
-_$SpeciesDetailsData _$_$SpeciesDetailsDataFromJson(Map<String, dynamic> json) {
-  return _$SpeciesDetailsData(
-    name: json['name'] as String,
-    names: (json['names'] as List<dynamic>)
-        .map((e) => Name.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    color: PokemonColor.fromJson(json['color'] as Map<String, dynamic>),
-    genera: (json['genera'] as List<dynamic>)
-        .map((e) => Genus.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>)
-        .map((e) => FlavorText.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+_$SpeciesDetailsDataImpl _$$SpeciesDetailsDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SpeciesDetailsDataImpl(
+      name: json['name'] as String,
+      names: (json['names'] as List<dynamic>)
+          .map((e) => Name.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      color: PokemonColor.fromJson(json['color'] as Map<String, dynamic>),
+      genera: (json['genera'] as List<dynamic>)
+          .map((e) => Genus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>)
+          .map((e) => FlavorText.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$_$SpeciesDetailsDataToJson(
-        _$SpeciesDetailsData instance) =>
+Map<String, dynamic> _$$SpeciesDetailsDataImplToJson(
+        _$SpeciesDetailsDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'names': instance.names,
@@ -115,31 +111,29 @@ Map<String, dynamic> _$_$SpeciesDetailsDataToJson(
       'flavor_text_entries': instance.flavorTextEntries,
     };
 
-_$GameIndexData _$_$GameIndexDataFromJson(Map<String, dynamic> json) {
-  return _$GameIndexData(
-    gameIndex: json['game_index'] as int,
-  );
-}
+_$GameIndexDataImpl _$$GameIndexDataImplFromJson(Map<String, dynamic> json) =>
+    _$GameIndexDataImpl(
+      gameIndex: json['game_index'] as int,
+    );
 
-Map<String, dynamic> _$_$GameIndexDataToJson(_$GameIndexData instance) =>
+Map<String, dynamic> _$$GameIndexDataImplToJson(_$GameIndexDataImpl instance) =>
     <String, dynamic>{
       'game_index': instance.gameIndex,
     };
 
-_$SpritesData _$_$SpritesDataFromJson(Map<String, dynamic> json) {
-  return _$SpritesData(
-    backDefault: json['back_default'] as String?,
-    backFemale: json['back_female'] as String?,
-    backShiny: json['back_shiny'] as String?,
-    backShinyFemale: json['back_shiny_female'] as String?,
-    frontDefault: json['front_default'] as String?,
-    frontFemale: json['front_female'] as String?,
-    frontShiny: json['front_shiny'] as String?,
-    frontShinyFemale: json['front_shiny_female'] as String?,
-  );
-}
+_$SpritesDataImpl _$$SpritesDataImplFromJson(Map<String, dynamic> json) =>
+    _$SpritesDataImpl(
+      backDefault: json['back_default'] as String?,
+      backFemale: json['back_female'] as String?,
+      backShiny: json['back_shiny'] as String?,
+      backShinyFemale: json['back_shiny_female'] as String?,
+      frontDefault: json['front_default'] as String?,
+      frontFemale: json['front_female'] as String?,
+      frontShiny: json['front_shiny'] as String?,
+      frontShinyFemale: json['front_shiny_female'] as String?,
+    );
 
-Map<String, dynamic> _$_$SpritesDataToJson(_$SpritesData instance) =>
+Map<String, dynamic> _$$SpritesDataImplToJson(_$SpritesDataImpl instance) =>
     <String, dynamic>{
       'back_default': instance.backDefault,
       'back_female': instance.backFemale,
@@ -151,90 +145,88 @@ Map<String, dynamic> _$_$SpritesDataToJson(_$SpritesData instance) =>
       'front_shiny_female': instance.frontShinyFemale,
     };
 
-_$PokemonColorData _$_$PokemonColorDataFromJson(Map<String, dynamic> json) {
-  return _$PokemonColorData(
-    name: json['name'] as String,
-  );
-}
+_$PokemonColorDataImpl _$$PokemonColorDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PokemonColorDataImpl(
+      name: json['name'] as String,
+    );
 
-Map<String, dynamic> _$_$PokemonColorDataToJson(_$PokemonColorData instance) =>
+Map<String, dynamic> _$$PokemonColorDataImplToJson(
+        _$PokemonColorDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
     };
 
-_$GenusData _$_$GenusDataFromJson(Map<String, dynamic> json) {
-  return _$GenusData(
-    genus: json['genus'] as String,
-    language: Language.fromJson(json['language'] as Map<String, dynamic>),
-  );
-}
+_$GenusDataImpl _$$GenusDataImplFromJson(Map<String, dynamic> json) =>
+    _$GenusDataImpl(
+      genus: json['genus'] as String,
+      language: Language.fromJson(json['language'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$GenusDataToJson(_$GenusData instance) =>
+Map<String, dynamic> _$$GenusDataImplToJson(_$GenusDataImpl instance) =>
     <String, dynamic>{
       'genus': instance.genus,
       'language': instance.language,
     };
 
-_$LanguageData _$_$LanguageDataFromJson(Map<String, dynamic> json) {
-  return _$LanguageData(
-    name: json['name'] as String,
-  );
-}
+_$LanguageDataImpl _$$LanguageDataImplFromJson(Map<String, dynamic> json) =>
+    _$LanguageDataImpl(
+      name: json['name'] as String,
+    );
 
-Map<String, dynamic> _$_$LanguageDataToJson(_$LanguageData instance) =>
+Map<String, dynamic> _$$LanguageDataImplToJson(_$LanguageDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
     };
 
-_$TypeSlotData _$_$TypeSlotDataFromJson(Map<String, dynamic> json) {
-  return _$TypeSlotData(
-    type: Type.fromJson(json['type'] as Map<String, dynamic>),
-  );
-}
+_$TypeSlotDataImpl _$$TypeSlotDataImplFromJson(Map<String, dynamic> json) =>
+    _$TypeSlotDataImpl(
+      type: Type.fromJson(json['type'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$TypeSlotDataToJson(_$TypeSlotData instance) =>
+Map<String, dynamic> _$$TypeSlotDataImplToJson(_$TypeSlotDataImpl instance) =>
     <String, dynamic>{
       'type': instance.type,
     };
 
-_$TypeData _$_$TypeDataFromJson(Map<String, dynamic> json) {
-  return _$TypeData(
-    name: json['name'] as String,
-    url: json['url'] as String,
-  );
-}
+_$TypeDataImpl _$$TypeDataImplFromJson(Map<String, dynamic> json) =>
+    _$TypeDataImpl(
+      name: json['name'] as String,
+      url: json['url'] as String,
+    );
 
-Map<String, dynamic> _$_$TypeDataToJson(_$TypeData instance) =>
+Map<String, dynamic> _$$TypeDataImplToJson(_$TypeDataImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'url': instance.url,
     };
 
-_$TypeDetailsData _$_$TypeDetailsDataFromJson(Map<String, dynamic> json) {
-  return _$TypeDetailsData(
-    id: json['id'] as int,
-    name: json['name'] as String,
-    names: (json['names'] as List<dynamic>)
-        .map((e) => Name.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
-}
+_$TypeDetailsDataImpl _$$TypeDetailsDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TypeDetailsDataImpl(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      names: (json['names'] as List<dynamic>)
+          .map((e) => Name.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$_$TypeDetailsDataToJson(_$TypeDetailsData instance) =>
+Map<String, dynamic> _$$TypeDetailsDataImplToJson(
+        _$TypeDetailsDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'names': instance.names,
     };
 
-_$FlavorTextData _$_$FlavorTextDataFromJson(Map<String, dynamic> json) {
-  return _$FlavorTextData(
-    flavorText: json['flavor_text'] as String,
-    language: Language.fromJson(json['language'] as Map<String, dynamic>),
-  );
-}
+_$FlavorTextDataImpl _$$FlavorTextDataImplFromJson(Map<String, dynamic> json) =>
+    _$FlavorTextDataImpl(
+      flavorText: json['flavor_text'] as String,
+      language: Language.fromJson(json['language'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$FlavorTextDataToJson(_$FlavorTextData instance) =>
+Map<String, dynamic> _$$FlavorTextDataImplToJson(
+        _$FlavorTextDataImpl instance) =>
     <String, dynamic>{
       'flavor_text': instance.flavorText,
       'language': instance.language,

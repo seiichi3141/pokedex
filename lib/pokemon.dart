@@ -19,7 +19,7 @@ class PokemonDetails with _$PokemonDetails {
   factory PokemonDetails({
     required int id,
     required String name,
-    @JsonKey(name: 'species') required Species species,
+    required Species species,
     @JsonKey(name: 'game_indices') required List<GameIndex> gameIndices,
     required Sprites sprites,
     required List<TypeSlot> types,
@@ -70,7 +70,7 @@ class SpeciesDetails with _$SpeciesDetails {
     required PokemonColor color,
     @JsonKey(name: "genera") required List<Genus> genera,
     @JsonKey(name: "flavor_text_entries")
-        required List<FlavorText> flavorTextEntries,
+    required List<FlavorText> flavorTextEntries,
   }) = SpeciesDetailsData;
 
   factory SpeciesDetails.fromJson(Map<String, dynamic> json) =>
